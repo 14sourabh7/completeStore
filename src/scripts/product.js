@@ -1,12 +1,11 @@
 $(document).ready(function () {
   //   display(data);
-
+  console.log("producrts - ");
   $.ajax({
-    url: "/data/products.php",
+    url: "/dbConfig/getProducts.php",
     method: "post",
     dataType: "JSON",
   }).done((data) => {
-    console.log("producrts - ", data);
     displayProducts(data);
   });
 
