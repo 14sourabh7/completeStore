@@ -25,5 +25,13 @@ if (isset($_POST)) {
         case 'empty':
             echo emptyCart();
             break;
+        case 'validateUser':
+            echo userValidate($_POST['email'], $_POST['password']);
+            break;
+        case 'validateEmail':
+            echo emailValidate($_POST['email']);
+            break;
+        case 'addUser':
+            echo addUser($_POST['name'], $_POST['email'], $_POST['password']);
     }
 }

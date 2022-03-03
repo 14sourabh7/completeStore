@@ -5,6 +5,7 @@ require('../vendor/autoload.php');
 use App\Cart;
 use App\Product;
 
+include '../classes/User.php';
 
 $cart = new Cart;
 
@@ -21,6 +22,7 @@ $cart = new Cart;
 function addToCart($id, $name, $price)
 {
     global $cart;
+    $user = new User(101, 'ss', 'ss', 'ss');
 
     if (!isset($_SESSION['cart'])) {
         $tempArr = array();
@@ -111,4 +113,25 @@ function emptyCart()
 function getCart()
 {
     return ($_SESSION['cart']);
+}
+
+function userValidate($email, $password)
+{
+    $user = new User(101, 'ss', 'ss', 'ss', 'ss@mail.com');
+    $result = $user->validateUser($email, $password);
+    return $result;
+}
+function emailValidate($email)
+{
+    $user = new User(101, 'ss', 'ss', 'ss', 'ss@mail.com');
+    $result = $user->validateEmail($email);
+    return $result;
+}
+function addUser($name, $email, $password)
+{
+    $user_id = rand(0, 10000);
+    $role = 'customer';
+    $user = new User(101, 'ss', 'ss', 'ss', 'ss@mail.com');
+    $result = $user->addUser($user_id, $name, $email, $password, $role);
+    return $result;
 }
