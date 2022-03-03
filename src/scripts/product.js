@@ -11,15 +11,18 @@ $(document).ready(function () {
   });
 
   $("body").on("click", ".add-to-cart", function () {
-    console.log("clicked");
     $.ajax({
       url: "/functions/operation.php",
       method: "post",
-      data: { action: "add" },
+      data: {
+        action: "add",
+        id: $(this).data("id"),
+        name: $(this).data("name"),
+        price: $(this).data("price"),
+      },
       dataType: "JSON",
     }).done((data) => {
-      console.log("producrts - ", data);
-      displayProducts(data);
+      console.log("added to cart");
     });
   });
 });
@@ -41,7 +44,10 @@ function displayProducts(data) {
                                 <div class="col text-end">4.8</div>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <button class="btn btn-danger px-2 add-to-cart" data-idx=${i}>Add to Cart</button>
+                                <button class="btn btn-danger px-2 add-to-cart" data-id='${data[i].sku_no}'
+                                  data-name='${data[i].name}'
+                                  data-price='${data[i].price}'
+                                }' >Add to Cart</button>
                                 <h4 class="text-danger">$${data[i].price}</h4>
                             </div>
 
