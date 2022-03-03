@@ -2,6 +2,14 @@ var data = [{ name: "product", price: 1000, quantity: 1 }];
 
 $(document).ready(function () {
   display(data);
+  $.ajax({
+    url: "/data/products.php",
+    method: "post",
+    dataType: "JSON",
+  }).done((data) => {
+    console.log("producrts - ", data);
+    displayOrders(data, 5);
+  });
 });
 function display(data) {
   var html = "";
