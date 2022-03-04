@@ -115,18 +115,46 @@ function getCart()
     return ($_SESSION['cart']);
 }
 
+
+/**
+ * userValidate()
+ * function to validate user
+ *
+ * @param [type] $email
+ * @param [type] $password
+ * @return void
+ */
 function userValidate($email, $password)
 {
     $user = new User(101, 'ss', 'ss', 'ss', 'ss@mail.com');
     $result = $user->validateUser($email, $password);
     return $result;
 }
+
+/**
+ * emailValidate()
+ * function to validate email
+ * 
+ *
+ * @param [type] $email
+ * @return void
+ */
 function emailValidate($email)
 {
     $user = new User(101, 'ss', 'ss', 'ss', 'ss@mail.com');
     $result = $user->validateEmail($email);
     return $result;
 }
+
+/**
+ * addUser
+ * function to add user
+ *
+ * @param [type] $name
+ * @param [type] $email
+ * @param [type] $password
+ * @return void
+ */
 function addUser($name, $email, $password)
 {
 
@@ -136,10 +164,43 @@ function addUser($name, $email, $password)
     return $result;
 }
 
+
+/**
+ * getUser()
+ * function to getUser from db
+ *
+ * @return void
+ */
 function getUser()
 {
-    $role = 'customer';
+
     $user = new User(101, 'ss', 'ss', 'ss', 'ss@mail.com');
     $result = $user->getUser();
+    return $result;
+}
+
+
+/**
+ * updateStatus
+ * function to update status
+ */
+
+function updateStatus($status, $id)
+{
+    $user = new User(101, 'ss', 'ss', 'ss', 'ss@mail.com');
+    $result = $user->updateStatus($status, $id);
+    return $result;
+}
+
+
+/**
+ * updateUserDetails()
+ * function to update user details
+ */
+
+function updateUserDetails($id, $name, $email)
+{
+    $user = new User(101, 'ss', 'ss', 'ss', 'ss@mail.com');
+    $result = $user->updateUserDetails($id, $name, $email);
     return $result;
 }

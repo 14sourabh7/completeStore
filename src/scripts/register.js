@@ -2,10 +2,14 @@ var re = /\S+@\S+\.\S+/;
 $(document).ready(function () {
   $(".submit").click(function (e) {
     e.preventDefault();
+
+    // variables
     var name = $("#name").val();
     var email = $("#email").val();
     var password = $("#pwd").val();
     var cnfPassword = $("#cnfpwd").val();
+
+    // input checker
     if (name && email && password && cnfPassword) {
       if (password == cnfPassword) {
         if (!re.test(email)) {
@@ -14,6 +18,7 @@ $(document).ready(function () {
           var emailErr = "Invalid email format";
           $("#emailError").html(emailErr);
         } else {
+          // code to check email already exists
           $.ajax({
             url: "/functions/operation.php",
             method: "post",
@@ -29,6 +34,8 @@ $(document).ready(function () {
             } else {
               $("#emailError").html("");
               console.log("adding");
+
+              // ajax call to add user
               $.ajax({
                 url: "/functions/operation.php",
                 method: "post",

@@ -35,5 +35,12 @@ if (isset($_POST)) {
             echo addUser($_POST['name'], $_POST['email'], $_POST['password']);
         case 'getUsers':
             echo getUser();
+            break;
+        case 'updateStatus':
+            echo updateStatus($_POST['status'], $_POST['user_id']);
+            break;
+        case   'updateUserDetails':
+            echo updateUserDetails($_POST['user_id'], $_POST['name'], $_POST['email']);
+            break;
     }
 }

@@ -1,15 +1,19 @@
 var re = /\S+@\S+\.\S+/;
 $(document).ready(function () {
   var login = sessionStorage.getItem("login");
+
+  // login check
   if (login == "1") {
     location.replace("/pages/dashboard.php");
   }
 
+  // function to handle signin button
   $("#signin").click(function () {
     var email = $("#email").val();
     var password = $("#password").val();
 
     if (email && password) {
+      // email vaildator
       if (!re.test(email)) {
         $("#errorPass").html("");
         var emailErr = "Invalid email format";
@@ -17,6 +21,8 @@ $(document).ready(function () {
       } else {
         $("#errorEmail").html("");
         $("#errorPass").html("");
+
+        // ajax call to validate User
         $.ajax({
           url: "/functions/operation.php",
           method: "post",
@@ -34,6 +40,7 @@ $(document).ready(function () {
             sessionStorage.setItem("user_id", data[0].user_id);
             sessionStorage.setItem("role", data[0].role);
             sessionStorage.setItem("login", 1);
+            sessionStorage.setItem("status", data[0].status);
             console.log(data[0].name, data[0].email, data[0].role);
             location.replace("/pages/dashboard.php");
           }

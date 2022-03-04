@@ -18,6 +18,13 @@ class User extends DB
     }
 
 
+    /**
+     * function to fetch single user
+     *
+     * @param [type] $email
+     * @param [type] $password
+     * @return void
+     */
     public function validateUser($email, $password)
     {
         $conn = DB::getInstance();
@@ -26,6 +33,13 @@ class User extends DB
         $stmt->execute();
         return json_encode($stmt->fetchAll());
     }
+
+    /**
+     * validateEmail
+     *function to fetch email
+     * @param [type] $email
+     * @return void
+     */
     public function validateEmail($email)
     {
         $conn = DB::getInstance();
@@ -34,6 +48,12 @@ class User extends DB
         $stmt->execute();
         return json_encode($stmt->fetchAll());
     }
+
+
+    /**
+     * addUser
+     * function to add user
+     */
 
     public function addUser($name, $email, $password, $role)
     {
@@ -44,6 +64,12 @@ class User extends DB
         return json_encode($last_id);
     }
 
+
+    /**
+     * getUser()
+     *function to get users
+     * @return void
+     */
     public function getUser()
     {
         $conn = DB::getInstance();
@@ -51,5 +77,28 @@ class User extends DB
         $stmt = $conn->prepare("SELECT * FROM `Users`");
         $stmt->execute();
         return json_encode($stmt->fetchAll());
+    }
+
+    /**
+     * updateStatus()
+     *function to update status
+     * @return void
+     */
+    public function updateStatus($status, $id)
+    {
+        $conn = DB::getInstance();
+        // prepare sql and bind parameters
+        $stmt = $conn->prepare("UPDATE `Users` SET `status`='$status' WHERE user_id='$id'");
+        $stmt->execute();
+        return json_encode(array('updated'));
+    }
+
+    public function updateUserDetails($id, $name, $email)
+    {
+        $conn = DB::getInstance();
+        // prepare sql and bind parameters
+        $stmt = $conn->prepare("UPDATE `Users` SET `name`='$name',`email`='$email' WHERE user_id='$id'");
+        $stmt->execute();
+        return json_encode(array('updated'));
     }
 }

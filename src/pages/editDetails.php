@@ -17,7 +17,7 @@
     ?>
 
     <main class="form-signin w-75 mx-auto mt-2">
-        <h1 class="text-center text-danger">Sign Up Page</h1>
+        <h1 class="text-center text-danger">Update Your Details</h1>
         <form action="/action_page.php">
             <div class="row">
                 <label for="name" class="form-label">Name:</label>
@@ -28,14 +28,14 @@
                 <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
                 <p id="emailError" class='text-danger'></p>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <label for="pwd" class="form-label">Password:</label>
                 <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
             </div>
             <div class="row">
                 <label for="cnfpwd" class="form-label">Confirm Password:</label>
                 <input type="password" class="form-control" id="cnfpwd" placeholder="Enter password" name="pswd">
-            </div>
+            </div> -->
 
             <p id='errorMsg' class="text-danger"></p>
             <button class="btn btn-danger p-2 w-25 mt-3 submit">Submit</button>
@@ -49,6 +49,6 @@
     ?>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src='../scripts/register.js'></script>
+<script src='../scripts/updateDetails.js'></script>
 
 </html>

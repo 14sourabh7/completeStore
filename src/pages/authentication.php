@@ -1,3 +1,4 @@
+<!-- PHP file to display authentication page -->
 <!DOCTYPE html>
 <html lang="en">
 

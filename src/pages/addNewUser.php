@@ -17,7 +17,7 @@
     ?>
 
     <main class="form-signin w-75 mx-auto mt-2">
-        <h1 class="text-center text-danger">Sign Up Page</h1>
+        <h1 class="text-center text-danger">Add new User</h1>
         <form action="/action_page.php">
             <div class="row">
                 <label for="name" class="form-label">Name:</label>

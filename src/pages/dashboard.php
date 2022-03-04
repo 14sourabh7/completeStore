@@ -1,3 +1,4 @@
+<!-- Php file to display dashboard -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -67,16 +68,16 @@
                         <div class="col-8">
                             <h1>User Management</h1>
                         </div>
-                        <div class="col-4 ">
+                        <!-- <div class="col-4 ">
                             <button class="btn border">share</button>
                             <button class="btn border">export</button>
-                        </div>
-                        <div class="col-8 mx-auto">
+                        </div> -->
+                        <!-- <div class="col-8 mx-auto">
                             <input id='searchInput' class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-                        </div>
+                    </div> -->
                         <div class="col-4">
-                            <button class="btn btn-primary viewAll" data-list='users'>View All</button>
-                            <button class="btn btn-success addNewUser" data-list='users' data-bs-toggle="modal" data-bs-target="#addNewModal">Add New</button>
+                            <!-- <button class="btn btn-primary viewAll" data-list='users'>View All</button> -->
+                            <a href='/pages/addNewUser.php' class="btn btn-success addNewUser">Add New</a>
                         </div>
                     </div>
                     <div class="table-responsive mt-4">
@@ -89,8 +90,8 @@
                                     <th scope="col">name</th>
                                     <th scope="col">email</th>
                                     <th scope='col'>role</th>
-                                    <th scope='col'></th>
-                                    <th scope='col'></th>
+                                    <th scope='col'>Status</th>
+                                    <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody class='userData'>
@@ -116,6 +117,7 @@
                     </div>
                     <div class="col-6" id='email'>
                     </div>
+                    <a href="/pages/editDetails.php" class="btn btn-warning">edit details</a>
                 </div>
             </div>
         </div>
