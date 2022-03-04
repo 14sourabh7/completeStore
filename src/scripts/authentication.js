@@ -2,8 +2,9 @@ var re = /\S+@\S+\.\S+/;
 $(document).ready(function () {
   var login = sessionStorage.getItem("login");
   if (login == "1") {
-    location.replace("/pages/userDashboard.php");
+    location.replace("/pages/dashboard.php");
   }
+
   $("#signin").click(function () {
     var email = $("#email").val();
     var password = $("#password").val();
@@ -27,12 +28,14 @@ $(document).ready(function () {
           dataType: "JSON",
         }).done((data) => {
           if (data.length > 0) {
+            console.log(data);
             sessionStorage.setItem("email", data[0].email);
             sessionStorage.setItem("name", data[0].name);
-            sessionStorage.setItem("name", data[0].user_id);
+            sessionStorage.setItem("user_id", data[0].user_id);
             sessionStorage.setItem("role", data[0].role);
             sessionStorage.setItem("login", 1);
-            location.replace("/pages/userDashboard.php");
+            console.log(data[0].name, data[0].email, data[0].role);
+            location.replace("/pages/dashboard.php");
           }
         });
       }

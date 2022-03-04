@@ -129,9 +129,17 @@ function emailValidate($email)
 }
 function addUser($name, $email, $password)
 {
-    $user_id = rand(0, 10000);
+
     $role = 'customer';
     $user = new User(101, 'ss', 'ss', 'ss', 'ss@mail.com');
-    $result = $user->addUser($user_id, $name, $email, $password, $role);
+    $result = $user->addUser($name, $email, $password, $role);
+    return $result;
+}
+
+function getUser()
+{
+    $role = 'customer';
+    $user = new User(101, 'ss', 'ss', 'ss', 'ss@mail.com');
+    $result = $user->getUser();
     return $result;
 }

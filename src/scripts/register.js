@@ -40,7 +40,7 @@ $(document).ready(function () {
                 },
                 dataType: "JSON",
               }).done((data) => {
-                console.log(data);
+                location.replace("/pages/authentication.php");
               });
             }
           });

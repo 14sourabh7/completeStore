@@ -33,5 +33,7 @@ if (isset($_POST)) {
             break;
         case 'addUser':
             echo addUser($_POST['name'], $_POST['email'], $_POST['password']);
+        case 'getUsers':
+            echo getUser();
     }
 }
