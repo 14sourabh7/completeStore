@@ -43,6 +43,8 @@ $(document).ready(function () {
             sessionStorage.setItem("status", data[0].status);
             console.log(data[0].name, data[0].email, data[0].role);
             location.replace("/pages/dashboard.php");
+          } else {
+            $("#errorPass").html("*Invalid Credentials");
           }
         });
       }

@@ -9,6 +9,7 @@ $(document).ready(function () {
     if (role == "admin") {
       $("#user").hide();
       getUsers();
+      getProducts();
     } else if (status == "restricted") {
       $("#admin").hide();
       var message =
@@ -96,4 +97,48 @@ function displayUsers(data, limit = data.length) {
   }
 
   $(".userData").html(html);
+}
+
+// function to getProducts from db
+function getProducts() {
+  $.ajax({
+    url: "/functions/operation.php",
+    method: "post",
+    data: { action: "getProducts" },
+    dataType: "JSON",
+  }).done((data) => {
+    console.log(data);
+    displayProducts(data);
+  });
+}
+
+// function to display products
+function displayProducts(data, limit = data.length) {
+  var html = "";
+  console.log(data);
+  if (data) {
+    for (let i = 0; i < limit; i++) {
+      var color = data[i].status == "approved" ? "text-success" : "text-danger";
+      var changeBtn = data[i].role == "admin" ? "disabled" : "";
+
+      html += `
+          <tr>
+          <td id='user_id'>${data[i].sku_no}</td>
+          <td>${data[i].name}</td>
+          <td>${data[i].brand}</td>
+          <td>${data[i].type}</td>
+          <td>${data[i].price}</td>
+         <td>${data[i].discount}</td>
+          </tr>
+          `;
+    }
+  }
+  //  <td> <select name='status' class='btn ${color}' data-id='${data[i].user_id}' value='${data[i].status}' id='status' ${changeBtn}>
+  //           <option  class='btn ${color}'  value='${data[i].status}'  name='status'>
+  //          ${data[i].status}
+  //           </option>
+  //           <option name='status' class='text-success' value='approved'>approved</option>
+  //             <option name='status' class='text-danger' value = 'restricted'>restricted</option>
+  //           </select></td>
+  $(".productData").html(html);
 }

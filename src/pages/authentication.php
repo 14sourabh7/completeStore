@@ -33,6 +33,7 @@
             </div>
 
             <br>
+
             <a href='#' class="w-100   btn btn-lg btn-danger" type="submit" id='signin'>Sign in</a>
 
             <a href="/pages/register.php" class="text-center">Not a user? Sign Up now</a>

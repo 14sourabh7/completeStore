@@ -26,7 +26,10 @@
             </li>
 
             <li class="nav-item px-1">
-                <a class="btn btn-danger rounded" href="/pages/authentication.php">Sign In</a>
+                <a class="nav-link" href="/pages/dashboard.php">Dashboard</a>
+            </li>
+            <li class="nav-item px-1">
+                <a class="btn btn-danger rounded " id='signinBtn' href="/pages/authentication.php">Sign In</a>
             </li>
         </ul>
     </div>

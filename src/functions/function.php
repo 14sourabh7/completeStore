@@ -6,6 +6,7 @@ use App\Cart;
 use App\Product;
 
 include '../classes/User.php';
+include '../classes/Products.php';
 
 $cart = new Cart;
 
@@ -202,5 +203,13 @@ function updateUserDetails($id, $name, $email)
 {
     $user = new User(101, 'ss', 'ss', 'ss', 'ss@mail.com');
     $result = $user->updateUserDetails($id, $name, $email);
+    return $result;
+}
+
+
+function getProducts()
+{
+    $products = new Products();
+    $result = $products->getProducts();
     return $result;
 }

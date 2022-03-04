@@ -42,5 +42,8 @@ if (isset($_POST)) {
         case   'updateUserDetails':
             echo updateUserDetails($_POST['user_id'], $_POST['name'], $_POST['email']);
             break;
+        case 'getProducts':
+            echo getProducts();
+            break;
     }
 }

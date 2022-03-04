@@ -2,11 +2,13 @@ $(document).ready(function () {
   //   display(data);
   console.log("producrts - ");
   $.ajax({
-    url: "/dbConfig/getProducts.php",
+    url: "/functions/operation.php",
     method: "post",
+    data: { action: "getProducts" },
     dataType: "JSON",
   }).done((data) => {
     displayProducts(data);
+    console.log(data);
   });
 
   $("body").on("click", ".add-to-cart", function () {
@@ -23,6 +25,19 @@ $(document).ready(function () {
     }).done((data) => {
       console.log("added to cart");
     });
+  });
+
+  if (sessionStorage.getItem("login") == 1) {
+    $("#signinBtn").html("Sign Out");
+  } else {
+    $("#signinBtn").html("Sign In");
+  }
+
+  $("#signinBtn").click(function () {
+    sessionStorage.clear();
+    if (!sessionStorage.getItem("login")) {
+      location.replace("/pages/authentication.php");
+    }
   });
 });
 
