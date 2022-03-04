@@ -84,11 +84,11 @@ class User extends DB
      *function to update status
      * @return void
      */
-    public function updateStatus($status, $id)
+    public function updateStatus($status, $id, $col)
     {
         $conn = DB::getInstance();
         // prepare sql and bind parameters
-        $stmt = $conn->prepare("UPDATE `Users` SET `status`='$status' WHERE user_id='$id'");
+        $stmt = $conn->prepare("UPDATE `Users` SET `$col`='$status' WHERE user_id='$id'");
         $stmt->execute();
         return json_encode(array('updated'));
     }
@@ -100,5 +100,12 @@ class User extends DB
         $stmt = $conn->prepare("UPDATE `Users` SET `name`='$name',`email`='$email' WHERE user_id='$id'");
         $stmt->execute();
         return json_encode(array('updated'));
+    }
+    public function deleteUser($user_id)
+    {
+        $conn = DB::getInstance();
+        $stmt = $conn->prepare(" DELETE FROM `Users` WHERE `user_id`='$user_id'");
+        $stmt->execute();
+        return json_encode(array('deleted'));
     }
 }

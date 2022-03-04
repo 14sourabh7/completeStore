@@ -37,13 +37,25 @@ if (isset($_POST)) {
             echo getUser();
             break;
         case 'updateStatus':
-            echo updateStatus($_POST['status'], $_POST['user_id']);
+            echo updateStatus($_POST['status'], $_POST['user_id'], $_POST['column']);
             break;
         case   'updateUserDetails':
             echo updateUserDetails($_POST['user_id'], $_POST['name'], $_POST['email']);
             break;
         case 'getProducts':
             echo getProducts();
+            break;
+        case 'addNewProduct':
+            echo addNewProduct($_POST['name'], $_POST['brand'], $_POST['category'], $_POST['price'], $_POST['discount']);
+            break;
+        case 'updateProduct':
+            echo updateProduct($_POST['product_id'], $_POST['name'], $_POST['brand'], $_POST['category'], $_POST['price'], $_POST['discount']);
+            break;
+        case 'deleteProduct':
+            echo deleteProduct($_POST['product_id']);
+            break;
+        case 'deleteUser':
+            echo deleteUser($_POST['user_id']);
             break;
     }
 }

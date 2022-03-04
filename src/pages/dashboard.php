@@ -19,6 +19,7 @@
     include '../components/dashboard/users.php';
     include '../components/dashboard/products.php';
     echo ' </main>    </div>';
+    include '../components/addNewModal.php';
     include '../components/footer.php';
     ?>
 </body>

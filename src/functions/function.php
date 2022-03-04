@@ -186,10 +186,10 @@ function getUser()
  * function to update status
  */
 
-function updateStatus($status, $id)
+function updateStatus($status, $id, $col)
 {
     $user = new User(101, 'ss', 'ss', 'ss', 'ss@mail.com');
-    $result = $user->updateStatus($status, $id);
+    $result = $user->updateStatus($status, $id, $col);
     return $result;
 }
 
@@ -211,5 +211,32 @@ function getProducts()
 {
     $products = new Products();
     $result = $products->getProducts();
+    return $result;
+}
+
+function addNewProduct($name, $brand, $category, $price, $discount)
+{
+    $products = new Products();
+    $result = $products->addNewProduct($name, $brand, $category, $price, $discount);
+    return $result;
+}
+
+function updateProduct($product_id, $name, $brand, $category, $price, $discount)
+{
+    $products = new Products();
+    $result = $products->updateProduct($product_id, $name, $brand, $category, $price, $discount);
+    return $result;
+}
+
+function deleteProduct($product_id)
+{
+    $products = new Products();
+    $result = $products->deleteProduct($product_id);
+    return $result;
+}
+function deleteUser($user_id)
+{
+    $user = new User(101, 'ss', 'ss', 'ss', 'ss@mail.com');
+    $result = $user->deleteUser($user_id);
     return $result;
 }

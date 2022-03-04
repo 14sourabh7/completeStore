@@ -14,7 +14,7 @@
                     </div> -->
             <div class="col-4">
                 <!-- <button class="btn btn-primary viewAll" data-list='users'>View All</button> -->
-                <a href='/pages/addNewUser.php' class="btn btn-success addNewProduct">Add New</a>
+                <a href='/pages/addNewUser.php' class="btn btn-success addNewProduct" data-bs-toggle="modal" data-bs-target="#addNewModal">Add New</a>
             </div>
         </div>
         <div class="table-responsive mt-4">
@@ -36,5 +36,7 @@
                 </tbody>
             </table>
         </div>
+
+
 
 </section>
