@@ -194,18 +194,6 @@ function updateStatus($status, $id, $col)
 }
 
 
-/**
- * updateUserDetails()
- * function to update user details
- */
-
-function updateUserDetails($id, $name, $email)
-{
-    $user = new User(101, 'ss', 'ss', 'ss', 'ss@mail.com');
-    $result = $user->updateUserDetails($id, $name, $email);
-    return $result;
-}
-
 
 function getProducts()
 {
@@ -238,5 +226,36 @@ function deleteUser($user_id)
 {
     $user = new User(101, 'ss', 'ss', 'ss', 'ss@mail.com');
     $result = $user->deleteUser($user_id);
+    return $result;
+}
+
+function getUserDetails($user_id)
+{
+
+    $user = new User(101, 'ss', 'ss', 'ss', 'ss@mail.com');
+    $result = $user->getUserDetails($user_id);
+    return $result;
+}
+
+
+
+/**
+ * updateUserDetails()
+ * function to update user details
+ */
+
+function updateUserDetails($id, $name, $email)
+{
+    $user = new User(101, 'ss', 'ss', 'ss', 'ss@mail.com');
+    $result = $user->updateUserDetails($id, $name, $email);
+    return $result;
+}
+
+
+function updateUserDetail($user_id, $name, $email, $address, $mobile, $pin)
+{
+
+    $user = new User(101, 'ss', 'ss', 'ss', 'ss@mail.com');
+    $result = $user->updateUserDetail($user_id, $name, $email, $address, $mobile, $pin);
     return $result;
 }

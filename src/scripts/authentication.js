@@ -1,7 +1,7 @@
 var re = /\S+@\S+\.\S+/;
 $(document).ready(function () {
   var login = sessionStorage.getItem("login");
-
+  var role = sessionStorage.getItem("role");
   // login check
   if (login == "1") {
     location.replace("/pages/dashboard.php");

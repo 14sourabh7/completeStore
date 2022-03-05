@@ -13,12 +13,16 @@
 
 <body>
     <?php
+
     include '../components/dashboardHeader.php';
     include '../components/dashboard/sidebar.php';
-    echo ' <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">';
+
+    echo ' <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" id="admin"> ';
+
     include '../components/dashboard/users.php';
     include '../components/dashboard/products.php';
-    echo ' </main>    </div>';
+    echo ' </main>     </div>';
+    include '../components/dashboard/userProfile.php';
     include '../components/addNewModal.php';
     include '../components/footer.php';
     ?>

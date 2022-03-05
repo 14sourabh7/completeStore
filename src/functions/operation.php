@@ -57,5 +57,10 @@ if (isset($_POST)) {
         case 'deleteUser':
             echo deleteUser($_POST['user_id']);
             break;
+        case 'getUserDetails':
+            echo getUserDetails($_POST['user_id']);
+            break;
+        case 'updateUserDetail':
+            echo updateUserDetail($_POST['user_id'], $_POST['name'], $_POST['email'], $_POST['address'], $_POST['mobile'], $_POST['pin']);
     }
 }

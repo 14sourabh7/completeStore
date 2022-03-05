@@ -1,26 +1,26 @@
+var re = /\S+@\S+\.\S+/;
 $(document).ready(function () {
   var role = sessionStorage.getItem("role");
   var login = sessionStorage.getItem("login");
   var name = sessionStorage.getItem("name");
   var email = sessionStorage.getItem("email");
   var status = sessionStorage.getItem("status");
+  var user_id = sessionStorage.getItem("user_id");
   if (login == "1") {
     // if admin then this block will execute
     if (role == "admin") {
-      $("#user").hide();
+      $("#userProfile").hide();
       getUsers();
       getProducts();
     } else if (status == "restricted") {
+      console.log(status);
       $("#admin").hide();
+      $("#userProfile").show();
       var message =
         '<h1 class="text-danger mt-5">You are restricted to access data</h1>';
-      $("#user").html(message);
+      $("#userProfile").html(message);
     } else {
-      var name = sessionStorage.getItem("name");
-      $("#admin").hide();
-      $("#name").html(name);
-      $("#email").html(email);
-      $("#signout").html("Sign Out");
+      userProfile();
     }
   } else {
     location.replace("/pages/authentication.php");
@@ -53,6 +53,58 @@ $(document).ready(function () {
       }).done((data) => {
         getUsers();
       });
+    }
+  });
+
+  $(".profileSave").click(function () {
+    console.log("clicked");
+
+    var profileName = $("#profileName").val();
+    var profileEmail = $("#profileEmail").val();
+    var profileMobile = $(".profileMobile").val();
+    var profileAddress = $(".profileAddress").val();
+    var profilePin = $(".profilePin").val();
+    if (
+      profileName &&
+      profileEmail &&
+      profileMobile &&
+      profileAddress &&
+      profilePin
+    ) {
+      if (
+        !isNaN(profileMobile) &&
+        !isNaN(profilePin) &&
+        !re.test(profileEmail) &&
+        profileMobile.length != 10 &&
+        profilePin.length != 6
+      ) {
+        if (!isNaN(profileMobile) && profileMobile.length != 10)
+          $("#profileError").html("please provide valid mobile number");
+        if (!isNaN(profilePin) && profilePin.length != 6)
+          $("#profileError").html("please provide valid pin code of 6 digits");
+        !re.test(profileEmail) &&
+          $("#profileError").html("please provide valid email");
+      } else {
+        $("#profileError").html("");
+        $.ajax({
+          url: "/functions/operation.php",
+          method: "post",
+          data: {
+            action: "updateUserDetail",
+            name: profileName,
+            email: profileEmail,
+            address: profileAddress,
+            mobile: profileMobile,
+            pin: profilePin,
+            user_id: user_id,
+          },
+          dataType: "JSON",
+        }).done((data) => {
+          userProfile();
+        });
+      }
+    } else {
+      $("#profileError").html("*Please provide all details");
     }
   });
 
@@ -92,6 +144,29 @@ $(document).ready(function () {
     $(".editProduct").hide();
     $(".updateProduct").show();
   });
+
+  function userProfile() {
+    $("#admin").hide();
+    $("#userProfile").show();
+    $("#profileName").val(name);
+    $(".profileName").html(name);
+    $(".profileEmail").html(email);
+    $("#profileEmail").val(email);
+    $("#signout").html("Sign Out");
+    $.ajax({
+      url: "/functions/operation.php",
+      method: "post",
+      data: {
+        action: "getUserDetails",
+        user_id: user_id,
+      },
+      dataType: "JSON",
+    }).done((userData) => {
+      $(".profileMobile").val(userData[0].mobile);
+      $(".profileAddress").val(userData[0].address);
+      $(".profilePin").val(userData[0].pin);
+    });
+  }
 });
 $("body").on("click", ".updateProduct", function () {
   var name = $(this)
@@ -202,7 +277,7 @@ function displayUsers(data, limit = data.length) {
       var color = data[i].status == "approved" ? "text-success" : "text-danger";
       var userColor = data[i].role == "admin" ? "text-danger" : "text-success";
       var changeBtn =
-        data[i].role == "admin" && data[i].user_id == "101" ? "disabled" : "";
+        data[i].role == "admin" && data[i].user_id == "9921" ? "disabled" : "";
 
       html += `
           <tr>

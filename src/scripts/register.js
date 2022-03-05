@@ -47,6 +47,7 @@ $(document).ready(function () {
                 },
                 dataType: "JSON",
               }).done((data) => {
+                console.log("replacing");
                 location.replace("/pages/authentication.php");
               });
             }
