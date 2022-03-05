@@ -201,6 +201,12 @@ function getProducts()
     $result = $products->getProducts();
     return $result;
 }
+function getProduct($sku)
+{
+    $products = new Products();
+    $result = $products->getProduct($sku);
+    return $result;
+}
 
 function addNewProduct($name, $brand, $category, $price, $discount)
 {

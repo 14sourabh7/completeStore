@@ -78,9 +78,11 @@ function displayProducts(data) {
   if (data)
     for (let i = 0; i < data.length; i++) {
       html += `
-     <div class="col ?> m-3 id='data[i].name'">
+     <div class="col ?> m-3 ">
                     <div class="card" style="width:300px ; height:400px">
-                       <a href='#' class='img__wrap'>
+                       <a href='/pages/singleProductPage.php?id=${
+                         data[i].sku_no
+                       }' class='img__wrap'>
                         <img src="product.png" class="card-img-top w-100 viewProduct" alt="" />
                         <button class=' btn fs-3 text-white fw-bold w-100 img__description'>View Product</button>
                        </a>

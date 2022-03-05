@@ -22,6 +22,14 @@ class Products extends DB
         $stmt->execute();
         return json_encode($stmt->fetchAll());
     }
+    public function getProduct($sku)
+    {
+        $conn = DB::getInstance();
+        // prepare sql and bind parameters
+        $stmt = $conn->prepare("SELECT * FROM `Products`  WHERE `Products`.`sku_no`='$sku'");
+        $stmt->execute();
+        return json_encode($stmt->fetchAll());
+    }
     public function getFilterProducts($filter)
     {
         $conn = DB::getInstance();

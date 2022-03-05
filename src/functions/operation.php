@@ -45,6 +45,9 @@ if (isset($_POST)) {
         case 'getProducts':
             echo getProducts();
             break;
+        case 'getProduct':
+            echo getProduct($_POST['sku']);
+            break;
         case 'addNewProduct':
             echo addNewProduct($_POST['name'], $_POST['brand'], $_POST['category'], $_POST['price'], $_POST['discount']);
             break;
