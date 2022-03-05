@@ -259,3 +259,10 @@ function updateUserDetail($user_id, $name, $email, $address, $mobile, $pin)
     $result = $user->updateUserDetail($user_id, $name, $email, $address, $mobile, $pin);
     return $result;
 }
+
+function getFilterProducts($filter)
+{
+    $products = new Products();
+    $result = $products->getFilterProducts($filter);
+    return $result;
+}

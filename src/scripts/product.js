@@ -1,14 +1,35 @@
+var products = [];
 $(document).ready(function () {
   //   display(data);
-  console.log("producrts - ");
+
+  $("#searchInput").on("keyup", function () {
+    console.log($(this).val());
+    var product = products.filter((x) =>
+      x.name.toLowerCase().includes($(this).val().toLowerCase())
+    );
+    pagination(product);
+  });
+  $(".filter").click(function () {
+    var val = $(this).html();
+    $.ajax({
+      url: "/functions/operation.php",
+      method: "post",
+      data: { action: "getFilterProducts", filter: val },
+      dataType: "JSON",
+    }).done((data) => {
+      // console.log(data);
+      pagination(data);
+    });
+  });
+
   $.ajax({
     url: "/functions/operation.php",
     method: "post",
     data: { action: "getProducts" },
     dataType: "JSON",
   }).done((data) => {
-    displayProducts(data);
-    console.log(data);
+    products = data;
+    pagination(data);
   });
 
   $("body").on("click", ".add-to-cart", function () {
@@ -40,17 +61,31 @@ $(document).ready(function () {
     }
   });
 });
-
+function pagination(array) {
+  $("#pagination").pagination({
+    dataSource: array,
+    pageSize: 5,
+    showGoInput: true,
+    showGoButton: true,
+    callback: function (data, pagination) {
+      // template method of yourself
+      displayProducts(data);
+    },
+  });
+}
 function displayProducts(data) {
   var html = "";
   if (data)
     for (let i = 0; i < data.length; i++) {
       html += `
-     <div class="col ?> m-3">
+     <div class="col ?> m-3 id='data[i].name'">
                     <div class="card" style="width:300px ; height:400px">
-                        <img src="product.png" class="card-img-top w-100 " alt="" />
+                       <a href='#' class='img__wrap'>
+                        <img src="product.png" class="card-img-top w-100 viewProduct" alt="" />
+                        <button class=' btn fs-3 text-white fw-bold w-100 img__description'>View Product</button>
+                       </a>
                         <div class="card-body">
-                            <h4 class="card-title text-center">${
+                            <h4 class="card-title text-center" id='productName'>${
                               data[i].name
                             }</h4>
                             <div class="row">

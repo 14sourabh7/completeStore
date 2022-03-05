@@ -22,6 +22,20 @@ class Products extends DB
         $stmt->execute();
         return json_encode($stmt->fetchAll());
     }
+    public function getFilterProducts($filter)
+    {
+        $conn = DB::getInstance();
+        // prepare sql and bind parameters
+        if ($filter == 'All') {
+            $stmt = $conn->prepare("SELECT * FROM `Products`");
+        } else {
+            $stmt = $conn->prepare("SELECT * FROM `Products` WHERE `Products`.`type`='$filter'");
+        }
+
+        $stmt->execute();
+        return json_encode($stmt->fetchAll());
+    }
+
     public function addNewProduct($name, $brand, $category, $price, $discount)
     {
 

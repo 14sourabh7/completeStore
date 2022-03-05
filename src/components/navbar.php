@@ -7,7 +7,7 @@
         </a>
 
         <div class="input-group border px-2 py-2" style="border-radius: 30px; width: 40%">
-            <input type="text" class="form-control border-0" placeholder="Search" />
+            <input type="text" class="form-control border-0" id='searchInput' placeholder="Search" />
             <button class="btn rounded text-danger pe-4" href="#">
                 <i class="fa fa-search"></i>
             </button>
