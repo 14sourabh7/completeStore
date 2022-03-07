@@ -1,3 +1,4 @@
+var gt = 0;
 $(document).ready(function () {
   $.ajax({
     url: "/functions/operation.php",
@@ -26,7 +27,7 @@ $(document).ready(function () {
 
   $(".checkOut").click(function () {
     if (sessionStorage.getItem("login") == "1") {
-      location.replace("/pages/checkout.php");
+      gt > 0 && location.replace("/pages/checkout.php");
     } else {
       location.replace("/pages/authentication.php");
     }
@@ -81,4 +82,5 @@ function display(data) {
         </a></td></tr> 
     `;
   $(".cartData").html(html);
+  gt = grandTotal;
 }

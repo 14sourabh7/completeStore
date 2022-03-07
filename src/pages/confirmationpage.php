@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php
-include '../components/htmlHead.php';
-?>
+<head>
+
+    <title>Order Success</title>
+    <?php
+    include '../components/htmlHead.php';
+    ?>
+</head>
+
 <style>
     .wrapper {
         display: flex;

@@ -64,7 +64,7 @@ if (isset($_POST)) {
             echo getProduct($_POST['sku']);
             break;
         case 'addNewProduct':
-            echo addNewProduct($_POST['name'], $_POST['brand'], $_POST['category'], $_POST['price'], $_POST['discount']);
+            echo addNewProduct($_POST['name'], $_POST['brand'], $_POST['category'], $_POST['price'], $_POST['discount'], $_POST['description']);
             break;
         case 'updateProduct':
             echo updateProduct($_POST['product_id'], $_POST['name'], $_POST['brand'], $_POST['category'], $_POST['price'], $_POST['discount']);

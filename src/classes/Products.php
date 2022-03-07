@@ -82,12 +82,12 @@ class Products extends DB
      * @param [type] $discount
      * @return void
      */
-    public function addNewProduct($name, $brand, $category, $price, $discount)
+    public function addNewProduct($name, $brand, $category, $price, $discount, $desc)
     {
 
         $conn = DB::getInstance();
         // prepare sql and bind parameters
-        $stmt = $conn->prepare(" INSERT INTO `Products`(`name`, `brand`, `price`, `discount`, `type`, `image`) VALUES ('$name','$brand','$price','$discount','$category','product.png')");
+        $stmt = $conn->prepare(" INSERT INTO `Products`(`name`, `brand`, `price`, `discount`, `type`, `image`,`description`) VALUES ('$name','$brand','$price','$discount','$category','product.png','$desc')");
         $stmt->execute();
         $last_id = $conn->lastInsertId();
         return json_encode($last_id);

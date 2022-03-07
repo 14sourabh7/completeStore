@@ -315,10 +315,10 @@ function getProduct($sku)
  * @param [type] $discount
  * @return void
  */
-function addNewProduct($name, $brand, $category, $price, $discount)
+function addNewProduct($name, $brand, $category, $price, $discount, $desc)
 {
     $products = new Products();
-    $result = $products->addNewProduct($name, $brand, $category, $price, $discount);
+    $result = $products->addNewProduct($name, $brand, $category, $price, $discount, $desc);
     return $result;
 }
 

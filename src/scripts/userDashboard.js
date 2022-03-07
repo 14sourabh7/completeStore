@@ -47,9 +47,13 @@ $(document).ready(function () {
       $("#users").hide();
       $("#products").show();
       $("#orders").hide();
-    } else {
+    } else if ($(this).data("id") == "orders") {
       $("#users").hide();
       $("#products").hide();
+      $("#orders").show();
+    } else {
+      $("#users").show();
+      $("#products").show();
       $("#orders").show();
     }
   });
@@ -164,6 +168,7 @@ $(document).ready(function () {
     var category = $("#newCateg").val();
     var price = $("#newPrice").val();
     var discount = $("#newDisc").val();
+    var desc = $("#desc").val();
     console.log(name, brand, discount, category, price);
 
     if (name && brand && category && price && discount) {
@@ -177,6 +182,7 @@ $(document).ready(function () {
           category: category,
           price: price,
           discount: discount,
+          description: desc,
         },
         dataType: "JSON",
       }).done((data) => {
@@ -246,6 +252,7 @@ $(document).ready(function () {
       .val();
     var product_id = $(this).data("id");
     console.log($(this).data("id"));
+    console.log(type);
     if (name && brand && type && price && discount) {
       $.ajax({
         url: "/functions/operation.php",
@@ -293,7 +300,14 @@ $(document).ready(function () {
           <input type='text' class='w-100 border-0' value=${data[i].brand} id='productBrand' disabled/>
           </td>
           <td>
-          <input type='text' class='w-100 border-0' value=${data[i].type} id='productType' disabled/>
+          <select class="form-control w-100 border-0 btn" id='productType' name="editcategory" disabled>
+          <option value=${data[i].type} name='editcategory'>${data[i].type} </option>
+                             <option value="faishion" name='editcategory'>faishion</option>
+                             <option value="electronics" name='editcategory'>electronics</option>
+                             <option value="appliances" name='editcategory'>appliances</option>
+                             <option value="furniture" name='editcategory'>furniture</option>
+                         </select>
+          
           </td>
           <td>
           <input type='text' class='w-100 border-0' value=${data[i].price} id='productPrice' disabled/></td>

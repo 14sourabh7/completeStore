@@ -1,8 +1,10 @@
 <html>
-<?php
-include '../components/htmlHead.php';
-?>
 
+<Head>
+    <?php
+    include '../components/htmlHead.php';
+    ?>
+    <title>Checkout Page</title>
 </head>
 
 <body>

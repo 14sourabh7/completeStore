@@ -3,11 +3,18 @@ $(document).ready(function () {
   // function for search bar
   $("#searchInput").on("keyup", function () {
     console.log($(this).val());
-    var product;
+    var product, category;
     product = products.filter((x) =>
       x.name.toLowerCase().includes($(this).val().toLowerCase())
     );
-    pagination(product);
+    category = products.filter((x) =>
+      x.type.toLowerCase().includes($(this).val().toLowerCase())
+    );
+    if (product.length > 0) {
+      pagination(product);
+    } else if (category.length > 0) {
+      pagination(category);
+    }
   });
 
   // function for category filters
@@ -27,12 +34,22 @@ $(document).ready(function () {
   $(".sort").click(function () {
     $(this).val() == "priceDown" &&
       products.sort(function (a, b) {
-        return a.price - b.price;
+        return (
+          a.price -
+          a.price * (a.discount / 100) -
+          b.price -
+          b.price * (b.discount / 100)
+        );
       });
 
     $(this).val() == "priceUp" &&
       products.sort(function (a, b) {
-        return b.price - a.price;
+        return (
+          b.price -
+          b.price * (b.discount / 100) -
+          a.price -
+          a.price * (a.discount / 100)
+        );
       });
     pagination(products);
   });

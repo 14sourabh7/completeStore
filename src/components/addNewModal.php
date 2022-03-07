@@ -38,6 +38,10 @@
                          <input type="number" class="form-control" id="newDisc" placeholder="Enter Discount" name="discount">
                      </div>
 
+                     <div>
+                         <p>Description</p>
+                         <textarea name="desc" id="desc" cols="30" rows="10" val=""></textarea>
+                     </div>
                  </form>
 
              </div>

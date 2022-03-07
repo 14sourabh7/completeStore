@@ -2,10 +2,9 @@
 <html lang="en">
 
 <head>
+    <title>product page</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>product page</title>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -75,10 +74,7 @@
                         <p>SKU: <span class="text-muted ps-1 sku">12</span></p>
                         <p>Category: <span class="text-primary ps-1 type">12</span></p>
                         <!-- <p>Tag: <span class="text-muted ps-1">Screen</span></p> -->
-                        <button class="btn btn-secondary text-black fw-bold text-muted" style="background-color: #f2f2f2; border: none">
-                            <img class="me-2" src="../node_modules/bootstrap-icons/icons/share.svg" alt="" />
-                            Share
-                        </button>
+
                     </div>
                 </div>
                 <div class="col-6">
@@ -88,32 +84,13 @@
                 </div>
             </div>
 
-            <!-- specs -->
 
         </div>
-        <div class="col-12">
-            <div class="row d-flex justify-content-end">
-                <div class="col-sm-12 col-md-6">
-                    <div class="d-flex fw-bold">
-                        <span class="p-2 text-primary">Description</span>
-                        <span class="p-2">Reviews(1)</span>
-                    </div>
-                    <div class="progress" style="height: 2px">
-                        <div class="progress-bar" style="width: 20%; height: 10px"></div>
-                    </div>
-                    <div class="mt-2">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum
-                        voluptatem ab quia exercitationem iure repudiandae numquam do
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
-    <?php
-    include '../components/footer.php';
-    ?>
+        <?php
+        include '../components/footer.php';
+        ?>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src=' ../scripts/singleProduct.js'></script>
