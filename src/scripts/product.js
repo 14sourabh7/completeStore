@@ -79,7 +79,7 @@ $(document).ready(function () {
 function pagination(array) {
   $("#pagination").pagination({
     dataSource: array,
-    pageSize: 5,
+    pageSize: 6,
     showGoInput: true,
     showGoButton: true,
     callback: function (data, pagination) {

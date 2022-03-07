@@ -8,10 +8,10 @@ include '../components/htmlHead.php';
 <body>
     <?php include '../components/navbar.php'; ?>
 
-    <div class="container-fluid text-center mt-5">
+    <div class="container-fluid text-center mt-5 bg-dark text-white p-5">
         <div class="row">
-            <div class="col-8">
-                <h3>Your Products</h3>
+            <div class="col-6 mx-auto bg-light">
+                <h2 class='text-danger mb-3'>Your Products</h2>
                 <table class="table table-striped table-sm" id='userTable'>
                     <thead>
                         <tr>
@@ -26,8 +26,9 @@ include '../components/htmlHead.php';
                     </tbody>
                 </table>
             </div>
-            <div class="col-4">
-                <h3 class="mt-5">Shipping Details</h3>
+
+            <div class="col-5 ">
+                <h3 class="mt-3 text-danger">Shipping Details</h3>
                 <label for="mobile ">
                     Name
                     <input type='text' class="name m-2" />
@@ -55,9 +56,9 @@ include '../components/htmlHead.php';
             </div>
         </div>
         <hr>
-        <div class="row">
-            <div class="col">
-                <h2>Payment Details</h2>
+        <div class="row ">
+            <div class="col-12">
+                <h2 class="text-danger">Payment Details</h2>
                 <label for="cardNo">
                     Card No <input type="text" class="m-2 cardNo" placeholder="enter your card no">
                 </label>
@@ -73,12 +74,9 @@ include '../components/htmlHead.php';
                 <br>
                 <input type="button" class="btn btn-danger pay w-50" value='Place Order'>
             </div>
-
         </div>
 
     </div>
-
-
     <?php include '../components/footer.php'; ?>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
