@@ -1,3 +1,6 @@
+if (!sessionStorage.getItem("countCart")) {
+  sessionStorage.setItem("countCart", 0);
+}
 $(document).ready(function () {
   var name, price;
   console.log(new URLSearchParams(window.location.search).get("id"));
@@ -20,6 +23,7 @@ $(document).ready(function () {
     );
     $(".sku").html(data[0].sku_no);
     $(".type").html(data[0].type);
+    $(".desc").html(data[0].description);
   });
 
   $(".add-to-cart").click(function () {

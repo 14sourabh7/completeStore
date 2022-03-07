@@ -113,16 +113,17 @@ function displayProducts(data) {
                                 <div class="col text-end">4.8</div>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <button class="btn btn-danger px-2 add-to-cart" data-id='${
+                                <button class="btn btn-danger add-to-cart" data-id='${
                                   data[i].sku_no
                                 }'
                                   data-name='${data[i].name}'
                                   data-price='${data[i].price}'
                                 }' >Add to Cart</button>
-                                <h4 class="text-danger">$${
-                                  data[i].price -
-                                  data[i].price * (data[i].discount / 100)
-                                }</h4>
+                                <h4 class="text-danger fs-5"> <span class='text-muted fs-6' style='text-decoration: line-through'>$${
+                                  data[i].price
+                                } &nbsp;</span>  $${
+        data[i].price - data[i].price * (data[i].discount / 100)
+      }</h4>
                             </div>
 
                         </div>

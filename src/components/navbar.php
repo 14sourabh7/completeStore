@@ -1,5 +1,4 @@
 <nav class="navbar sticky-top navbar-expand-sm bg-white shadow-sm">
-
     <div class="container-fluid pt-3 pb-2 d-flex align-items-center">
         <a href="/" class="text-danger navbar-brand ms-5 px-5">
             <i class="fa-solid fa-shop"></i>
@@ -23,6 +22,8 @@
 
             <li class="nav-item px-1">
                 <a class="nav-link" href="/pages/cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
+
+
             </li>
 
             <li class="nav-item px-1">

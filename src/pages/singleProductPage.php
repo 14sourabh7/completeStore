@@ -64,23 +64,21 @@
             </div>
 
             <!-- description -->
-            <div class="row pt-5">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio
-                illo labore unde facere quisquam optio beatae vel neque quas qui
-                saepe rem vitae aliquid voluptatem, quasi inventore consectetur.
-                Aliquid, dolore.
+            <div class="row pt-5 desc">
+
             </div>
 
             <!-- buttons -->
             <div class="row mt-4">
-                <div class="col-6 d-flex align-items-center">
-                    <div class="rounded-circle py-1 px-2 bg-secondary">
-                        <img src="../node_modules/bootstrap-icons/icons/arrow-down.svg" alt="" />
-                    </div>
-                    <span class="mx-2">1</span>
-
-                    <div class="rounded-circle py-1 px-2 bg-secondary">
-                        <img src="../node_modules/bootstrap-icons/icons/arrow-up.svg" alt="" />
+                <div class="col-6">
+                    <div class="col-4 pt-4 fw-bold">
+                        <p>SKU: <span class="text-muted ps-1 sku">12</span></p>
+                        <p>Category: <span class="text-primary ps-1 type">12</span></p>
+                        <!-- <p>Tag: <span class="text-muted ps-1">Screen</span></p> -->
+                        <button class="btn btn-secondary text-black fw-bold text-muted" style="background-color: #f2f2f2; border: none">
+                            <img class="me-2" src="../node_modules/bootstrap-icons/icons/share.svg" alt="" />
+                            Share
+                        </button>
                     </div>
                 </div>
                 <div class="col-6">
@@ -91,17 +89,7 @@
             </div>
 
             <!-- specs -->
-            <div class="row">
-                <div class="col-4 pt-4 fw-bold">
-                    <p>SKU: <span class="text-muted ps-1 sku">12</span></p>
-                    <p>Category: <span class="text-primary ps-1 type">12</span></p>
-                    <!-- <p>Tag: <span class="text-muted ps-1">Screen</span></p> -->
-                    <button class="btn btn-secondary text-black fw-bold text-muted" style="background-color: #f2f2f2; border: none">
-                        <img class="me-2" src="../node_modules/bootstrap-icons/icons/share.svg" alt="" />
-                        Share
-                    </button>
-                </div>
-            </div>
+
         </div>
         <div class="col-12">
             <div class="row d-flex justify-content-end">
