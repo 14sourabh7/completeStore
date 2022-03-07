@@ -106,7 +106,7 @@ $(document).ready(function () {
       data: { action: "getUsers" },
       dataType: "JSON",
     }).done((data) => {
-      displayUsers(data);
+      paginationUser(data);
     });
   }
 
@@ -275,7 +275,7 @@ $(document).ready(function () {
       data: { action: "getProducts" },
       dataType: "JSON",
     }).done((data) => {
-      displayProducts(data);
+      paginationProduct(data);
     });
   }
 
@@ -327,7 +327,39 @@ $(document).ready(function () {
       getOrders();
     });
   });
-
+  function paginationUser(array) {
+    $(".userPages").pagination({
+      dataSource: array,
+      pageSize: 5,
+      showGoInput: true,
+      showGoButton: true,
+      callback: function (data, pagination) {
+        displayUsers(data);
+      },
+    });
+  }
+  function paginationProduct(array) {
+    $(".productPages").pagination({
+      dataSource: array,
+      pageSize: 5,
+      showGoInput: true,
+      showGoButton: true,
+      callback: function (data, pagination) {
+        displayProducts(data);
+      },
+    });
+  }
+  function paginationOrder(array) {
+    $(".orderPages").pagination({
+      dataSource: array,
+      pageSize: 5,
+      showGoInput: true,
+      showGoButton: true,
+      callback: function (data, pagination) {
+        displayOrders(data);
+      },
+    });
+  }
   $("body").on("click", ".viewItem", function () {
     console.log($(this).parent().parent().siblings().children(".items"));
     $(this).siblings(".items").toggle();
@@ -341,7 +373,7 @@ $(document).ready(function () {
       data: { action: "getAllOrders" },
       dataType: "JSON",
     }).done((data) => {
-      displayOrders(data);
+      paginationOrder(data);
     });
   }
 
@@ -397,17 +429,6 @@ $(document).ready(function () {
     $(".orderData").html(html);
   }
 
-  // <td>
-  //   <button class="btn editProduct">edit</button>
-  //   <a
-  //     href="#"
-  //     class="btn updateProduct"
-  //     data-id="${data[i].sku_no}"
-  //     style="display:none;"
-  //   >
-  //     update
-  //   </a>
-  // </td>;
   ///////////////  user Profile /////////////////////////////////////////////////
 
   // function for customer profile
