@@ -1,5 +1,5 @@
   <!-- footer -->
-  <div class="row pb-5 pt-5 mt-5">
+  <div class="row pb-5 pt-5 mt-5 bg-light">
 
 
       <p class="text-center text-muted">

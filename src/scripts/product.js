@@ -37,8 +37,7 @@ $(document).ready(function () {
         return (
           a.price -
           a.price * (a.discount / 100) -
-          b.price -
-          b.price * (b.discount / 100)
+          (b.price - b.price * (b.discount / 100))
         );
       });
 

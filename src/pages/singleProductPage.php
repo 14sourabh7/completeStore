@@ -78,7 +78,7 @@
                     </div>
                 </div>
                 <div class="col-6">
-                    <button class="btn btn-primary fntSize fw-bold add-to-cart" data-id='0'>
+                    <button class="btn btn-danger p-3 fw-bold add-to-cart" data-id='0'>
                         Add to cart
                     </button>
                 </div>
