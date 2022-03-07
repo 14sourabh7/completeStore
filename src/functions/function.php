@@ -400,7 +400,7 @@ function placeOrder($user_id, $quant, $total, $address, $pin, $cart, $status)
 
 /**
  * getOrders
- * function to get all orders
+ * function to get all orders with user id
  *
  * @param [type] $user_id
  * @return void
@@ -410,5 +410,26 @@ function getOrders($user_id)
 
     $order = new Orders();
     $result = $order->getOrders($user_id);
+    return $result;
+}
+
+/**
+ * getAllorders()
+ * function to get all orders in db
+ *
+ * @return void
+ */
+function getAllOrders()
+{
+    $order = new Orders();
+    $result = $order->getAllOrders();
+    return $result;
+}
+
+
+function updateOrderStatus($order_id, $status)
+{
+    $order = new Orders();
+    $result = $order->updateOrderStatus($order_id, $status);
     return $result;
 }

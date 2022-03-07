@@ -16,7 +16,8 @@
                 <label class="visually-hidden" for="inlineFormSelectPref">Sort By</label>
                 <select class="form-select sort" id="inlineFormSelectPref">
                     <option selected>Sort By</option>
-                    <option value="price">Price</option>
+                    <option value="priceDown">Price low to high</option>
+                    <option value="priceUp">Price high to low</option>
                     <!-- <option value="2">Recently Added</option>
                     <option value="3">Popularity</option> -->
                 </select>

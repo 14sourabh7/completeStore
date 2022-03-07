@@ -93,5 +93,11 @@ if (isset($_POST)) {
         case 'getOrders':
             echo getOrders($_POST['user_id']);
             break;
+        case 'getAllOrders':
+            echo getAllOrders();
+            break;
+        case "updateOrderStatus":
+            echo updateOrderStatus($_POST['order_id'], $_POST['status']);
+            break;
     }
 }

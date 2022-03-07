@@ -20,6 +20,7 @@ include '../components/htmlHead.php';
                         <th scope="col">quantity</th>
                         <th scope="col">DATE / TIME</th>
                         <th scope='col'>Items</th>
+                        <th scope='col'>Status</th>
                     </tr>
                 </thead>
                 <tbody class='orderData'>

@@ -21,6 +21,7 @@
 
     include '../components/dashboard/users.php';
     include '../components/dashboard/products.php';
+    include '../components/dashboard/orders.php';
     echo ' </main>     </div>';
     include '../components/dashboard/userProfile.php';
     include '../components/addNewModal.php';

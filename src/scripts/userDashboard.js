@@ -15,6 +15,7 @@ $(document).ready(function () {
       $("#userProfile").hide();
       getUsers();
       getProducts();
+      getOrders();
     } else if (status == "restricted") {
       console.log(status);
       $("#admin").hide();
@@ -34,6 +35,22 @@ $(document).ready(function () {
     sessionStorage.clear();
     if (!sessionStorage.getItem("login")) {
       location.replace("/pages/authentication.php");
+    }
+  });
+
+  $(".management").click(function () {
+    if ($(this).data("id") == "users") {
+      $("#users").show();
+      $("#products").hide();
+      $("#orders").hide();
+    } else if ($(this).data("id") == "products") {
+      $("#users").hide();
+      $("#products").show();
+      $("#orders").hide();
+    } else {
+      $("#users").hide();
+      $("#products").hide();
+      $("#orders").show();
     }
   });
 
@@ -89,7 +106,6 @@ $(document).ready(function () {
       data: { action: "getUsers" },
       dataType: "JSON",
     }).done((data) => {
-      console.log(data);
       displayUsers(data);
     });
   }
@@ -97,7 +113,6 @@ $(document).ready(function () {
   // function to display users
   function displayUsers(data, limit = data.length) {
     var html = "";
-    console.log(data);
 
     if (data) {
       for (let i = 0; i < limit; i++) {
@@ -260,7 +275,6 @@ $(document).ready(function () {
       data: { action: "getProducts" },
       dataType: "JSON",
     }).done((data) => {
-      console.log(data);
       displayProducts(data);
     });
   }
@@ -268,7 +282,7 @@ $(document).ready(function () {
   /**function to display products */
   function displayProducts(data, limit = data.length) {
     var html = "";
-    console.log(data);
+
     if (data) {
       for (let i = 0; i < limit; i++) {
         html += `
@@ -296,6 +310,104 @@ $(document).ready(function () {
     $(".productData").html(html);
   }
 
+  //////////////// Order Management  ///////////////////////////////////////////////////////////
+
+  //function to handle order status update
+  $("body").on("change", ".orderStatus", function () {
+    $.ajax({
+      url: "/functions/operation.php",
+      method: "post",
+      data: {
+        action: "updateOrderStatus",
+        order_id: $(this).data("id"),
+        status: $(this).val(),
+      },
+      dataType: "JSON",
+    }).done((data) => {
+      getOrders();
+    });
+  });
+
+  $("body").on("click", ".viewItem", function () {
+    console.log($(this).parent().parent().siblings().children(".items"));
+    $(this).siblings(".items").toggle();
+  });
+
+  // function to get Orders from db
+  function getOrders() {
+    $.ajax({
+      url: "/functions/operation.php",
+      method: "post",
+      data: { action: "getAllOrders" },
+      dataType: "JSON",
+    }).done((data) => {
+      displayOrders(data);
+    });
+  }
+
+  /**function to display Ordes */
+  function displayOrders(data, limit = data.length) {
+    var html = "";
+    console.log(data);
+    if (data) {
+      for (let i = 0; i < limit; i++) {
+        var itemList = "<ol class='items' style='display:none;'>";
+        var items = JSON.parse(data[i].cart);
+        for (let j = 0; j < items.length; j++) {
+          itemList += `
+        <li>${items[j].id} -  ${items[j].name} - ${items[j].price}</li>
+        `;
+        }
+        var color =
+          data[i].status == "delivered" ? "btn-success" : "btn-danger";
+        data[i].status == "order dispatched" && (color = "btn-primary");
+        html += `
+          <tr>
+          <td id='order_id'>${data[i].order_id}</td>
+          <td>${data[i].user_id} </td>
+          <td>
+         ${data[i].quantity} 
+          </td>
+          <td>
+         ${data[i].amount}
+          </td>
+          <td>
+          ${data[i].date}</td>
+         <td>
+        <td>
+        <select class='btn orderStatus ${color}' name='order_status' data-id='${data[i].order_id}' >
+        <option class='${color}' name='order_status' value='${data[i].status}'>${data[i].status}</option>
+        <option class='btn-danger' name='order_status' value='order placed'>order placed</option>
+        <option class='btn-primary' name='order_status' value='order dispatched'>dispatched</option>
+        <option class='btn-success' name='order_status' value='delivered'>delivered</option>
+        <select>
+        </td>
+       
+         <td> <span class='text-danger viewItem' style='cursor:pointer'>
+        View
+        </span>
+         ${itemList}</ol>
+       </td>
+          </tr>
+          
+          
+          `;
+      }
+    }
+    $(".orderData").html(html);
+  }
+
+  // <td>
+  //   <button class="btn editProduct">edit</button>
+  //   <a
+  //     href="#"
+  //     class="btn updateProduct"
+  //     data-id="${data[i].sku_no}"
+  //     style="display:none;"
+  //   >
+  //     update
+  //   </a>
+  // </td>;
   ///////////////  user Profile /////////////////////////////////////////////////
 
   // function for customer profile

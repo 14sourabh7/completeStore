@@ -48,4 +48,28 @@ class Orders extends DB
         $stmt->execute();
         return json_encode($stmt->fetchAll());
     }
+
+    /**
+     * getAllOrders()
+     * 
+     * function to fetch all orders from db
+     *
+     * @param [type] $user_id
+     * @return void
+     */
+    public function getAllOrders()
+    {
+        $conn = DB::getInstance();
+        $stmt = $conn->prepare("SELECT * from `orders` WHERE 1");
+        $stmt->execute();
+        return json_encode($stmt->fetchAll());
+    }
+
+    public function updateOrderStatus($order_id, $status)
+    {
+        $conn = DB::getInstance();
+        $stmt = $conn->prepare("UPDATE `orders` SET `status`='$status' WHERE `order_id`='$order_id'");
+        $stmt->execute();
+        return json_encode(array('updated'));
+    }
 }

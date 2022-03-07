@@ -57,6 +57,7 @@ function displayOrders(data) {
         </span>
         ${itemList}</ol>
         </td>
+        <td>${data[i].status}</td>
         </tr>
         `;
   }

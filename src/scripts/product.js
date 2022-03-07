@@ -25,9 +25,14 @@ $(document).ready(function () {
 
   // function to sort elements
   $(".sort").click(function () {
-    $(this).val() == "price" &&
+    $(this).val() == "priceDown" &&
       products.sort(function (a, b) {
         return a.price - b.price;
+      });
+
+    $(this).val() == "priceUp" &&
+      products.sort(function (a, b) {
+        return b.price - a.price;
       });
     pagination(products);
   });

@@ -9,25 +9,25 @@
                             Dashboard
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#users">
+                    <li class="nav-item ">
+                        <a class="nav-link management" data-id='users' href="#users">
                             <span data-feather="file"></span>
                             User Management
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#products">
+                    <li class="nav-item ">
+                        <a class="nav-link management" data-id='products' href="#products">
                             <span data-feather="shopping-cart"></span>
                             Product Management
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link management" data-id='orders' href="#orders">
+                            <span data-feather="users"></span>
+                            Order Management
+                        </a>
+                    </li>
                     <!--  <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="users"></span>
-                                Customers
-                            </a>
-                        </li>
-                         <li class="nav-item">
                             <a class="nav-link" href="#">
                                 <span data-feather="bar-chart-2"></span>
                                 Reports
