@@ -7,9 +7,13 @@ use App\Product;
 
 include '../classes/User.php';
 include '../classes/Products.php';
+include '../classes/Orders.php';
 
 $cart = new Cart;
 
+
+
+// CART FUNCTIONS//////////////////////////////////////////////////////////////
 
 /**
  * addTocart
@@ -117,6 +121,11 @@ function getCart()
 }
 
 
+
+
+//// USER functions /////////////////////////////////////////////////////////////////
+
+
 /**
  * userValidate()
  * function to validate user
@@ -194,40 +203,13 @@ function updateStatus($status, $id, $col)
 }
 
 
-
-function getProducts()
-{
-    $products = new Products();
-    $result = $products->getProducts();
-    return $result;
-}
-function getProduct($sku)
-{
-    $products = new Products();
-    $result = $products->getProduct($sku);
-    return $result;
-}
-
-function addNewProduct($name, $brand, $category, $price, $discount)
-{
-    $products = new Products();
-    $result = $products->addNewProduct($name, $brand, $category, $price, $discount);
-    return $result;
-}
-
-function updateProduct($product_id, $name, $brand, $category, $price, $discount)
-{
-    $products = new Products();
-    $result = $products->updateProduct($product_id, $name, $brand, $category, $price, $discount);
-    return $result;
-}
-
-function deleteProduct($product_id)
-{
-    $products = new Products();
-    $result = $products->deleteProduct($product_id);
-    return $result;
-}
+/**
+ * deleteUser()
+ * function to delete user
+ *
+ * @param [type] $user_id
+ * @return void
+ */
 function deleteUser($user_id)
 {
     $user = new User(101, 'ss', 'ss', 'ss', 'ss@mail.com');
@@ -235,6 +217,12 @@ function deleteUser($user_id)
     return $result;
 }
 
+/**
+ * function to get user details
+ *
+ * @param [type] $user_id
+ * @return void
+ */
 function getUserDetails($user_id)
 {
 
@@ -243,13 +231,15 @@ function getUserDetails($user_id)
     return $result;
 }
 
-
-
 /**
  * updateUserDetails()
- * function to update user details
+ * function to updateUserdetails in user table
+ *
+ * @param [type] $id
+ * @param [type] $name
+ * @param [type] $email
+ * @return void
  */
-
 function updateUserDetails($id, $name, $email)
 {
     $user = new User(101, 'ss', 'ss', 'ss', 'ss@mail.com');
@@ -258,6 +248,19 @@ function updateUserDetails($id, $name, $email)
 }
 
 
+/**
+ * updateUserDetail()
+ *
+ * function to updateUserDetails in user details table
+ * 
+ * @param [type] $user_id
+ * @param [type] $name
+ * @param [type] $email
+ * @param [type] $address
+ * @param [type] $mobile
+ * @param [type] $pin
+ * @return void
+ */
 function updateUserDetail($user_id, $name, $email, $address, $mobile, $pin)
 {
 
@@ -266,9 +269,146 @@ function updateUserDetail($user_id, $name, $email, $address, $mobile, $pin)
     return $result;
 }
 
+
+
+
+//product related functions//////////////////////////////////////////////////////////////////////////
+
+/**
+ * getProducts()
+ * function to call class function getProducts()
+ *
+ * @return void
+ */
+function getProducts()
+{
+    $products = new Products();
+    $result = $products->getProducts();
+    return $result;
+}
+
+
+/**
+ * getProduct($sku)
+ *function to get single product from class
+ * 
+ * @param [type] $sku
+ * @return void
+ */
+function getProduct($sku)
+{
+    $products = new Products();
+    $result = $products->getProduct($sku);
+    return $result;
+}
+
+
+/**
+ * addNewProduct
+ * 
+ * function to add new Product 
+ *
+ * @param [type] $name
+ * @param [type] $brand
+ * @param [type] $category
+ * @param [type] $price
+ * @param [type] $discount
+ * @return void
+ */
+function addNewProduct($name, $brand, $category, $price, $discount)
+{
+    $products = new Products();
+    $result = $products->addNewProduct($name, $brand, $category, $price, $discount);
+    return $result;
+}
+
+
+/**
+ * updateProduct()
+ * function to update product
+ *
+ * @param [type] $product_id
+ * @param [type] $name
+ * @param [type] $brand
+ * @param [type] $category
+ * @param [type] $price
+ * @param [type] $discount
+ * @return void
+ */
+function updateProduct($product_id, $name, $brand, $category, $price, $discount)
+{
+    $products = new Products();
+    $result = $products->updateProduct($product_id, $name, $brand, $category, $price, $discount);
+    return $result;
+}
+
+
+/**
+ * deleteProduct()
+ * function to delete product
+ *
+ * @param [type] $product_id
+ * @return void
+ */
+function deleteProduct($product_id)
+{
+    $products = new Products();
+    $result = $products->deleteProduct($product_id);
+    return $result;
+}
+
+
+/**
+ * getFilterProducts()
+ * function to get filter products
+ *
+ * @param [type] $filter
+ * @return void
+ */
 function getFilterProducts($filter)
 {
     $products = new Products();
     $result = $products->getFilterProducts($filter);
+    return $result;
+}
+
+
+
+
+///order related functions///////////////////////////////////////////////////////////////////////
+
+/**
+ * placeOrder()
+ * function place order
+ *
+ * @param [type] $user_id
+ * @param [type] $quant
+ * @param [type] $total
+ * @param [type] $address
+ * @param [type] $pin
+ * @param [type] $cart
+ * @param [type] $status
+ * @return void
+ */
+function placeOrder($user_id, $quant, $total, $address, $pin, $cart, $status)
+{
+    $order = new Orders();
+    $result = $order->placeOrder($user_id, $quant, $total, $address, $pin, $cart, $status);
+    return $result;
+}
+
+
+/**
+ * getOrders
+ * function to get all orders
+ *
+ * @param [type] $user_id
+ * @return void
+ */
+function getOrders($user_id)
+{
+
+    $order = new Orders();
+    $result = $order->getOrders($user_id);
     return $result;
 }

@@ -14,6 +14,14 @@ class Products extends DB
         $this->product = array();
     }
 
+
+    /**
+     * getProducts()
+     * 
+     * function to get all products
+     *
+     * @return void
+     */
     public function getProducts()
     {
         $conn = DB::getInstance();
@@ -22,6 +30,15 @@ class Products extends DB
         $stmt->execute();
         return json_encode($stmt->fetchAll());
     }
+
+    /**
+     * getProduct($sku)
+     * 
+     * function to get particular product
+     *
+     * @param [type] $sku
+     * @return void
+     */
     public function getProduct($sku)
     {
         $conn = DB::getInstance();
@@ -30,6 +47,15 @@ class Products extends DB
         $stmt->execute();
         return json_encode($stmt->fetchAll());
     }
+
+    /**
+     * getFilterProducts($filter)
+     * 
+     * function to get products on particular filter
+     *
+     * @param [type] $filter
+     * @return void
+     */
     public function getFilterProducts($filter)
     {
         $conn = DB::getInstance();
@@ -44,6 +70,18 @@ class Products extends DB
         return json_encode($stmt->fetchAll());
     }
 
+    /**
+     * addNewProduct($name,$brand, $category, $price, $discount)
+     * 
+     * function to add new product
+     *
+     * @param [type] $name
+     * @param [type] $brand
+     * @param [type] $category
+     * @param [type] $price
+     * @param [type] $discount
+     * @return void
+     */
     public function addNewProduct($name, $brand, $category, $price, $discount)
     {
 
@@ -55,6 +93,20 @@ class Products extends DB
         return json_encode($last_id);
     }
 
+
+    /**
+     * updateProduct
+     * 
+     * function to update product
+     *
+     * @param [type] $product_id
+     * @param [type] $name
+     * @param [type] $brand
+     * @param [type] $category
+     * @param [type] $price
+     * @param [type] $discount
+     * @return void
+     */
     public function updateProduct($product_id, $name, $brand, $category, $price, $discount)
     {
 
@@ -64,6 +116,15 @@ class Products extends DB
         $stmt->execute();
         return json_encode(array('updated'));
     }
+
+    /**
+     * deleteProduct($product_id)
+     * 
+     * function to delete product
+     *
+     * @param [type] $product_id
+     * @return void
+     */
     public function deleteProduct($product_id)
     {
 

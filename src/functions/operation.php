@@ -7,6 +7,8 @@ include 'function.php';
 if (isset($_POST)) {
     $action = $_POST['action'];
     switch ($action) {
+
+            // cart actions
         case 'get':
             echo getCart();
             break;
@@ -25,6 +27,8 @@ if (isset($_POST)) {
         case 'empty':
             echo emptyCart();
             break;
+
+            // user related actions
         case 'validateUser':
             echo userValidate($_POST['email'], $_POST['password']);
             break;
@@ -42,6 +46,17 @@ if (isset($_POST)) {
         case   'updateUserDetails':
             echo updateUserDetails($_POST['user_id'], $_POST['name'], $_POST['email']);
             break;
+        case 'deleteUser':
+            echo deleteUser($_POST['user_id']);
+            break;
+        case 'getUserDetails':
+            echo getUserDetails($_POST['user_id']);
+            break;
+        case 'updateUserDetail':
+            echo updateUserDetail($_POST['user_id'], $_POST['name'], $_POST['email'], $_POST['address'], $_POST['mobile'], $_POST['pin']);
+            break;
+
+            // product related actions
         case 'getProducts':
             echo getProducts();
             break;
@@ -57,17 +72,26 @@ if (isset($_POST)) {
         case 'deleteProduct':
             echo deleteProduct($_POST['product_id']);
             break;
-        case 'deleteUser':
-            echo deleteUser($_POST['user_id']);
-            break;
-        case 'getUserDetails':
-            echo getUserDetails($_POST['user_id']);
-            break;
-        case 'updateUserDetail':
-            echo updateUserDetail($_POST['user_id'], $_POST['name'], $_POST['email'], $_POST['address'], $_POST['mobile'], $_POST['pin']);
-            break;
+
         case 'getFilterProducts':
             echo getFilterProducts($_POST['filter']);
+            break;
+
+
+            // order related actions
+        case 'placeOrder':
+            echo placeOrder(
+                $_POST['user_id'],
+                $_POST['quant'],
+                $_POST['total'],
+                $_POST['address'],
+                $_POST['pin'],
+                $_POST['cart'],
+                $_POST['status']
+            );
+            break;
+        case 'getOrders':
+            echo getOrders($_POST['user_id']);
             break;
     }
 }

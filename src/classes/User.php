@@ -19,7 +19,7 @@ class User extends DB
 
 
     /**
-     * function to fetch single user
+     * function to validate single user
      *
      * @param [type] $email
      * @param [type] $password
@@ -35,8 +35,8 @@ class User extends DB
     }
 
     /**
-     * validateEmail
-     *function to fetch email
+     * validateEmail($email)
+     *function to validate email
      * @param [type] $email
      * @return void
      */
@@ -50,11 +50,17 @@ class User extends DB
     }
 
 
-    /**
-     * addUser
-     * function to add user
-     */
 
+    /**
+     * addUser($name,$email,$password,$role)
+     * function to add new user
+     *
+     * @param [type] $name
+     * @param [type] $email
+     * @param [type] $password
+     * @param [type] $role
+     * @return void
+     */
     public function addUser($name, $email, $password, $role)
     {
         $conn = DB::getInstance();
@@ -71,7 +77,7 @@ class User extends DB
 
     /**
      * getUser()
-     *function to get users
+     * function to get all users
      * @return void
      */
     public function getUser()
@@ -85,8 +91,11 @@ class User extends DB
     }
 
     /**
-     * updateStatus()
-     *function to update status
+     * updateStatus($status,$id,$col)
+     *
+     * @param [type] $status
+     * @param [type] $id
+     * @param [type] $col
      * @return void
      */
     public function updateStatus($status, $id, $col)
@@ -98,6 +107,17 @@ class User extends DB
         return json_encode(array('updated'));
     }
 
+
+    /**
+     * updateUserDetails($id,$name,$email)
+     * 
+     * function to update user details in user table
+     *
+     * @param [type] $id
+     * @param [type] $name
+     * @param [type] $email
+     * @return void
+     */
     public function updateUserDetails($id, $name, $email)
     {
         $conn = DB::getInstance();
@@ -107,6 +127,19 @@ class User extends DB
         return json_encode(array('updated'));
     }
 
+    /**
+     * updateUserDetail($user_id,$name,$email,$address,$mobile,$pin)
+     * 
+     * function to update user detail in user-details table
+     *
+     * @param [type] $user_id
+     * @param [type] $name
+     * @param [type] $email
+     * @param [type] $address
+     * @param [type] $mobile
+     * @param [type] $pin
+     * @return void
+     */
     public function updateUserDetail($user_id, $name, $email, $address, $mobile, $pin)
     {
         $conn = DB::getInstance();
@@ -124,6 +157,15 @@ class User extends DB
 
         return json_encode(array('user updated'));
     }
+
+    /**
+     * deleteUser($user_id)
+     * 
+     * function to delete user
+     *
+     * @param [type] $user_id
+     * @return void
+     */
     public function deleteUser($user_id)
     {
         $conn = DB::getInstance();
@@ -132,6 +174,15 @@ class User extends DB
         return json_encode(array('deleted'));
     }
 
+
+    /**
+     * getUserDetails($user_id)
+     * 
+     * function to return details of particular user
+     *
+     * @param [type] $user_id
+     * @return void
+     */
     public function getUserDetails($user_id)
     {
         $conn = DB::getInstance();

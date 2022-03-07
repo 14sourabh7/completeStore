@@ -29,7 +29,7 @@ include '../components/htmlHead.php';
             </table>
 
             <div class="row">
-                <a href='/pages/checkout.php' class="btn btn-danger "> CHECK OUT</a>
+                <a class="btn btn-danger checkOut"> CHECK OUT</a>
             </div>
         </div>
 

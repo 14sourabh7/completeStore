@@ -8,8 +8,6 @@ $(document).ready(function () {
   $(".submit").click(function (e) {
     e.preventDefault();
 
-    // var password = $("#pwd").val();
-    // var cnfPassword = $("#cnfpwd").val();
     var user_id = sessionStorage.getItem("user_id");
 
     // input checker

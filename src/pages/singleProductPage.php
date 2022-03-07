@@ -84,8 +84,7 @@
                     </div>
                 </div>
                 <div class="col-6">
-                    <button class="btn btn-primary fntSize fw-bold">
-                        <img src="../node_modules/bootstrap-icons/icons/cart.svg" alt="" />
+                    <button class="btn btn-primary fntSize fw-bold add-to-cart" data-id='0'>
                         Add to cart
                     </button>
                 </div>
@@ -129,6 +128,6 @@
     ?>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src='../scripts/singleProduct.js'></script>
+<script src=' ../scripts/singleProduct.js'></script>
 
 </html>

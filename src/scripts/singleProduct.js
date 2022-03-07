@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  var name, price;
   console.log(new URLSearchParams(window.location.search).get("id"));
   $.ajax({
     url: "/functions/operation.php",
@@ -10,6 +11,8 @@ $(document).ready(function () {
     dataType: "JSON",
   }).done((data) => {
     console.log(data);
+    name = data[0].name;
+    price = data[0].price;
     $(".productName").html(data[0].name);
     $(".price").html(`$${data[0].price}`);
     $(".dprice").html(
@@ -17,5 +20,21 @@ $(document).ready(function () {
     );
     $(".sku").html(data[0].sku_no);
     $(".type").html(data[0].type);
+  });
+
+  $(".add-to-cart").click(function () {
+    $.ajax({
+      url: "/functions/operation.php",
+      method: "post",
+      data: {
+        action: "add",
+        id: new URLSearchParams(window.location.search).get("id"),
+        name: name,
+        price: price,
+      },
+      dataType: "JSON",
+    }).done((data) => {
+      console.log("added to cart");
+    });
   });
 });

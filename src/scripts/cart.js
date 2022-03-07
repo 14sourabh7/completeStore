@@ -23,6 +23,27 @@ $(document).ready(function () {
       display(data);
     });
   });
+
+  $(".checkOut").click(function () {
+    if (sessionStorage.getItem("login") == "1") {
+      location.replace("/pages/checkout.php");
+    } else {
+      location.replace("/pages/authentication.php");
+    }
+  });
+
+  if (sessionStorage.getItem("login") == 1) {
+    $("#signinBtn").html("Sign Out");
+  } else {
+    $("#signinBtn").html("Sign In");
+  }
+
+  $("#signinBtn").click(function () {
+    sessionStorage.clear();
+    if (!sessionStorage.getItem("login")) {
+      location.replace("/pages/authentication.php");
+    }
+  });
 });
 function display(data) {
   var html = "";

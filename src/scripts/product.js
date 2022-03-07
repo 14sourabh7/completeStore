@@ -1,14 +1,16 @@
 var products = [];
 $(document).ready(function () {
-  //   display(data);
-
+  // function for search bar
   $("#searchInput").on("keyup", function () {
     console.log($(this).val());
-    var product = products.filter((x) =>
+    var product;
+    product = products.filter((x) =>
       x.name.toLowerCase().includes($(this).val().toLowerCase())
     );
     pagination(product);
   });
+
+  // function for category filters
   $(".filter").click(function () {
     var val = $(this).html();
     $.ajax({
@@ -17,11 +19,18 @@ $(document).ready(function () {
       data: { action: "getFilterProducts", filter: val },
       dataType: "JSON",
     }).done((data) => {
-      // console.log(data);
       pagination(data);
     });
   });
 
+  // function to sort elements
+  $(".sort").click(function () {
+    $(this).val() == "price" &&
+      products.sort(function (a, b) {
+        return a.price - b.price;
+      });
+    pagination(products);
+  });
   $.ajax({
     url: "/functions/operation.php",
     method: "post",
@@ -32,6 +41,7 @@ $(document).ready(function () {
     pagination(data);
   });
 
+  // function to add products to cart
   $("body").on("click", ".add-to-cart", function () {
     $.ajax({
       url: "/functions/operation.php",
@@ -68,11 +78,12 @@ function pagination(array) {
     showGoInput: true,
     showGoButton: true,
     callback: function (data, pagination) {
-      // template method of yourself
       displayProducts(data);
     },
   });
 }
+
+// function to display products
 function displayProducts(data) {
   var html = "";
   if (data)
