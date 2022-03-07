@@ -4,7 +4,9 @@ $(document).ready(function () {
   var role = sessionStorage.getItem("role");
   // login check
   if (login == "1") {
-    location.replace("/pages/dashboard.php");
+    role == "admin"
+      ? location.replace("/pages/dashboard.php")
+      : location.replace("/");
   }
 
   // function to handle signin button
@@ -42,7 +44,9 @@ $(document).ready(function () {
             sessionStorage.setItem("login", 1);
             sessionStorage.setItem("status", data[0].status);
             console.log(data[0].name, data[0].email, data[0].role);
-            location.replace("/pages/dashboard.php");
+            data[0].role == "admin"
+              ? location.replace("/pages/dashboard.php")
+              : location.replace("/");
           } else {
             $("#errorPass").html("*Invalid Credentials");
           }
