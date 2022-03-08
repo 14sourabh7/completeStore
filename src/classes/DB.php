@@ -21,7 +21,7 @@ class DB
                 // set the PDO error mode to exception
                 self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 return self::$instance;
-            } catch (PDOException $e) {
+            } catch (\PDOException $e) {
                 return $e->getMessage();
             }
         }
