@@ -50,24 +50,43 @@ $(document).ready(function () {
       status: status,
       cart: JSON.stringify(items),
     };
-    $.ajax({
-      url: "/functions/operation.php",
-      method: "post",
-      data,
-      dataType: "JSON",
-    }).done((data) => {
-      if (data > 0) {
+    if (address && pin) {
+      if (isNaN(pin) || pin.length != 6) {
+        $(".errorMsg").html("*Please provide valid 6 digit pincode");
+        $(".pin").css("border-color", "red");
+      } else {
         $.ajax({
           url: "/functions/operation.php",
           method: "post",
-          data: { action: "empty" },
+          data,
           dataType: "JSON",
         }).done((data) => {
-          console.log(data);
-          location.replace("/pages/confirmationpage.php");
+          if (data > 0) {
+            $.ajax({
+              url: "/functions/operation.php",
+              method: "post",
+              data: { action: "empty" },
+              dataType: "JSON",
+            }).done((data) => {
+              console.log(data);
+              location.replace("/pages/confirmationpage.php");
+            });
+          }
         });
       }
-    });
+    } else {
+      $(".errorMsg").html("*Please provide address and pincode");
+      if (!address) {
+        $(".address").css("border-color", "red");
+      } else {
+        $(".address").css("border-color", "gray");
+      }
+      if (!pin) {
+        $(".pin").css("border-color", "red");
+      } else {
+        $(".pin").css("border-color", "gray");
+      }
+    }
   });
   if (sessionStorage.getItem("login") == 1) {
     $("#signinBtn").html("Sign Out");

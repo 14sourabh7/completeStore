@@ -56,6 +56,7 @@
                     <input type='number' class="pin m-2">
                 </label>
             </div>
+            <p class='errorMsg text-danger'></p>
         </div>
         <hr>
         <div class="row ">
@@ -73,6 +74,7 @@
                 <label for="expiry">
                     Expiry Date <input type="text" class="m-2 expDate" placeholder="Enter date of expiry">
                 </label>
+
                 <br>
                 <input type="button" class="btn btn-danger pay w-50" value='Place Order'>
             </div>
