@@ -4,7 +4,18 @@
             <div class="col-8">
                 <h1>Product Management</h1>
             </div>
-            <a href='/pages/addNewUser.php' class="btn btn-success addNewProduct" data-bs-toggle="modal" data-bs-target="#addNewModal">Add New</a>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-8 mx-auto">
+                        <input id='searchProducts' class="form-control form-control-dark w-100" type="text" placeholder="Search by product_id or name" aria-label="Search">
+                    </div>
+                    <div class="col-4">
+                        <a href='/pages/addNewUser.php' class="btn btn-success addNewProduct" data-bs-toggle="modal" data-bs-target="#addNewModal">Add New</a>
+
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     <div class="table-responsive mt-4">

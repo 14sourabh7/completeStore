@@ -1,4 +1,7 @@
 var re = /\S+@\S+\.\S+/;
+var users = [];
+var products = [];
+var orders = [];
 $(document).ready(function () {
   // variables
   var role = sessionStorage.getItem("role");
@@ -110,6 +113,7 @@ $(document).ready(function () {
       data: { action: "getUsers" },
       dataType: "JSON",
     }).done((data) => {
+      users = data;
       paginationUser(data);
     });
   }
@@ -158,6 +162,21 @@ $(document).ready(function () {
     $(".userData").html(html);
   }
 
+  $("#searchUsers").on("keyup", function () {
+    console.log($(this).val());
+    var user, email;
+    user = users.filter((x) =>
+      x.user_id.toLowerCase().includes($(this).val().toLowerCase())
+    );
+    email = users.filter((x) =>
+      x.email.toLowerCase().includes($(this).val().toLowerCase())
+    );
+    if (user.length > 0) {
+      paginationUser(user);
+    } else if (email.length > 0) {
+      paginationUser(email);
+    }
+  });
   //////////////// Product table /////////////////////////////////////////////////
 
   // event handler to add new product
@@ -282,6 +301,7 @@ $(document).ready(function () {
       data: { action: "getProducts" },
       dataType: "JSON",
     }).done((data) => {
+      products = data;
       paginationProduct(data);
     });
   }
@@ -323,6 +343,21 @@ $(document).ready(function () {
     }
     $(".productData").html(html);
   }
+  $("#searchProducts").on("keyup", function () {
+    console.log($(this).val());
+    var product, name;
+    product = products.filter((x) =>
+      x.sku_no.toLowerCase().includes($(this).val().toLowerCase())
+    );
+    name = products.filter((x) =>
+      x.name.toLowerCase().includes($(this).val().toLowerCase())
+    );
+    if (product.length > 0) {
+      paginationProduct(product);
+    } else if (name.length > 0) {
+      paginationProduct(name);
+    }
+  });
 
   //////////////// Order Management  ///////////////////////////////////////////////////////////
 
@@ -387,6 +422,7 @@ $(document).ready(function () {
       data: { action: "getAllOrders" },
       dataType: "JSON",
     }).done((data) => {
+      orders = data;
       paginationOrder(data);
     });
   }
@@ -521,6 +557,20 @@ $(document).ready(function () {
       $("#profileError").html("*Please provide all details");
     }
   });
-
+  $("#searchOrders").on("keyup", function () {
+    console.log($(this).val());
+    var product, name;
+    order = orders.filter((x) =>
+      x.order_id.toLowerCase().includes($(this).val().toLowerCase())
+    );
+    user = orders.filter((x) =>
+      x.user_id.toLowerCase().includes($(this).val().toLowerCase())
+    );
+    if (order.length > 0) {
+      paginationOrder(order);
+    } else if (user.length > 0) {
+      paginationOrder(user);
+    }
+  });
   //
 });

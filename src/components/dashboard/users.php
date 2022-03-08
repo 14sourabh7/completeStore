@@ -8,9 +8,9 @@
                             <button class="btn border">share</button>
                             <button class="btn border">export</button>
                         </div> -->
-             <!-- <div class="col-8 mx-auto">
-                            <input id='searchInput' class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-                    </div> -->
+             <div class="col-8 mx-auto">
+                 <input id='searchUsers' class="form-control form-control-dark w-100" type="text" placeholder="Search by user_id or email" aria-label="Search">
+             </div>
              <div class="col-4">
                  <!-- <button class="btn btn-primary viewAll" data-list='users'>View All</button> -->
                  <a href='/pages/addNewUser.php' class="btn btn-success addNewUser">Add New</a>
