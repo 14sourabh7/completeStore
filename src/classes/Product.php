@@ -2,7 +2,6 @@
 
 namespace App;
 
-
 /**
  * Product class
  * class to hold particular product

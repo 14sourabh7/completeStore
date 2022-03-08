@@ -110,7 +110,7 @@ class Cart
      * @param [type] $array
      * @return void
      */
-    function setCart($array)
+    public function setCart($array)
     {
         $this->cart = $array;
     }

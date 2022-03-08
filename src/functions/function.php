@@ -1,18 +1,16 @@
 <?php
+
 session_start();
+
 require('../vendor/autoload.php');
 
 use App\Cart;
+use App\Orders;
 use App\Product;
-
-include '../classes/User.php';
-include '../classes/Products.php';
-include '../classes/Orders.php';
+use App\Products;
+use App\User;
 
 $cart = new Cart;
-
-
-
 // CART FUNCTIONS//////////////////////////////////////////////////////////////
 
 /**
@@ -27,7 +25,7 @@ $cart = new Cart;
 function addToCart($id, $name, $price)
 {
     global $cart;
-    $user = new User(101, 'ss', 'ss', 'ss');
+    // $user = new User(101, 'ss', 'ss', 'ss');
 
     if (!isset($_SESSION['cart'])) {
         $tempArr = array();
@@ -62,7 +60,6 @@ function increase($id)
 /**
  * decrease
  *function to call class decreaseQuantity function
- * 
  * @param [type] $id
  * @return cartArray
  */
@@ -144,8 +141,6 @@ function userValidate($email, $password)
 /**
  * emailValidate()
  * function to validate email
- * 
- *
  * @param [type] $email
  * @return void
  */
@@ -252,7 +247,6 @@ function updateUserDetails($id, $name, $email)
  * updateUserDetail()
  *
  * function to updateUserDetails in user details table
- * 
  * @param [type] $user_id
  * @param [type] $name
  * @param [type] $email
@@ -291,7 +285,6 @@ function getProducts()
 /**
  * getProduct($sku)
  *function to get single product from class
- * 
  * @param [type] $sku
  * @return void
  */
@@ -302,19 +295,6 @@ function getProduct($sku)
     return $result;
 }
 
-
-/**
- * addNewProduct
- * 
- * function to add new Product 
- *
- * @param [type] $name
- * @param [type] $brand
- * @param [type] $category
- * @param [type] $price
- * @param [type] $discount
- * @return void
- */
 function addNewProduct($name, $brand, $category, $price, $discount, $desc)
 {
     $products = new Products();
@@ -392,7 +372,7 @@ function getFilterProducts($filter)
  */
 function placeOrder($user_id, $quant, $total, $address, $pin, $cart, $status)
 {
-    $order = new Orders();
+    $order = new Orders;
     $result = $order->placeOrder($user_id, $quant, $total, $address, $pin, $cart, $status);
     return $result;
 }

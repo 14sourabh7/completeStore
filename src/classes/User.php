@@ -1,7 +1,7 @@
 <?php
 
+namespace App;
 
-include 'DB.php';
 class User extends DB
 {
     public $user_id;
@@ -64,7 +64,8 @@ class User extends DB
     public function addUser($name, $email, $password, $role)
     {
         $conn = DB::getInstance();
-        $stmt = $conn->prepare("INSERT INTO Users( `name`, `password`, `email`, `role`,`status`) VALUES('$name','$password','$email','$role','restricted')");
+        $stmt = $conn->prepare("INSERT INTO Users( `name`, `password`, `email`, `role`,`status`)
+         VALUES('$name','$password','$email','$role','restricted')");
         $stmt->execute();
         $last_id = $conn->lastInsertId();
 
@@ -110,7 +111,6 @@ class User extends DB
 
     /**
      * updateUserDetails($id,$name,$email)
-     * 
      * function to update user details in user table
      *
      * @param [type] $id
@@ -129,7 +129,6 @@ class User extends DB
 
     /**
      * updateUserDetail($user_id,$name,$email,$address,$mobile,$pin)
-     * 
      * function to update user detail in user-details table
      *
      * @param [type] $user_id
@@ -160,7 +159,6 @@ class User extends DB
 
     /**
      * deleteUser($user_id)
-     * 
      * function to delete user
      *
      * @param [type] $user_id
@@ -177,7 +175,6 @@ class User extends DB
 
     /**
      * getUserDetails($user_id)
-     * 
      * function to return details of particular user
      *
      * @param [type] $user_id

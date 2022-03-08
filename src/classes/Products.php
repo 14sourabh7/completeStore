@@ -1,9 +1,6 @@
 <?php
 
-
-
-include 'Product.php';
-
+namespace App;
 
 class Products extends DB
 {
@@ -17,7 +14,6 @@ class Products extends DB
 
     /**
      * getProducts()
-     * 
      * function to get all products
      *
      * @return void
@@ -33,7 +29,6 @@ class Products extends DB
 
     /**
      * getProduct($sku)
-     * 
      * function to get particular product
      *
      * @param [type] $sku
@@ -50,7 +45,6 @@ class Products extends DB
 
     /**
      * getFilterProducts($filter)
-     * 
      * function to get products on particular filter
      *
      * @param [type] $filter
@@ -72,7 +66,6 @@ class Products extends DB
 
     /**
      * addNewProduct($name,$brand, $category, $price, $discount)
-     * 
      * function to add new product
      *
      * @param [type] $name
@@ -87,7 +80,9 @@ class Products extends DB
 
         $conn = DB::getInstance();
         // prepare sql and bind parameters
-        $stmt = $conn->prepare(" INSERT INTO `Products`(`name`, `brand`, `price`, `discount`, `type`, `image`,`description`) VALUES ('$name','$brand','$price','$discount','$category','product.png','$desc')");
+        $stmt = $conn->prepare(" INSERT INTO `Products`
+        (`name`, `brand`, `price`, `discount`, `type`, `image`,`description`)
+         VALUES ('$name','$brand','$price','$discount','$category','product.png','$desc')");
         $stmt->execute();
         $last_id = $conn->lastInsertId();
         return json_encode($last_id);
@@ -96,7 +91,6 @@ class Products extends DB
 
     /**
      * updateProduct
-     * 
      * function to update product
      *
      * @param [type] $product_id
@@ -112,14 +106,16 @@ class Products extends DB
 
         $conn = DB::getInstance();
         // prepare sql and bind parameters
-        $stmt = $conn->prepare("UPDATE `Products` SET `name`='$name',`brand`='$brand',`price`='$price',`discount`='$discount',`type`='$category',`image`='product.png' WHERE `sku_no`='$product_id'");
+        $stmt = $conn->prepare("UPDATE `Products`
+         SET `name`='$name',`brand`='$brand',`price`='$price',`discount`='$discount',
+         `type`='$category',`image`='product.png'
+          WHERE `sku_no`='$product_id'");
         $stmt->execute();
         return json_encode(array('updated'));
     }
 
     /**
      * deleteProduct($product_id)
-     * 
      * function to delete product
      *
      * @param [type] $product_id

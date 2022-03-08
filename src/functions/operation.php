@@ -37,13 +37,14 @@ if (isset($_POST)) {
             break;
         case 'addUser':
             echo addUser($_POST['name'], $_POST['email'], $_POST['password']);
+            break;
         case 'getUsers':
             echo getUser();
             break;
         case 'updateStatus':
             echo updateStatus($_POST['status'], $_POST['user_id'], $_POST['column']);
             break;
-        case   'updateUserDetails':
+        case 'updateUserDetails':
             echo updateUserDetails($_POST['user_id'], $_POST['name'], $_POST['email']);
             break;
         case 'deleteUser':
@@ -53,7 +54,13 @@ if (isset($_POST)) {
             echo getUserDetails($_POST['user_id']);
             break;
         case 'updateUserDetail':
-            echo updateUserDetail($_POST['user_id'], $_POST['name'], $_POST['email'], $_POST['address'], $_POST['mobile'], $_POST['pin']);
+            $user_id = $_POST['user_id'];
+            $name = $_POST['name'];
+            $email = $_POST['email'];
+            $address = $_POST['address'];
+            $mobile = $_POST['mobile'];
+            $pin = $_POST['pin'];
+            echo updateUserDetail($user_id, $name, $email, $address, $mobile, $pin);
             break;
 
             // product related actions
@@ -64,10 +71,23 @@ if (isset($_POST)) {
             echo getProduct($_POST['sku']);
             break;
         case 'addNewProduct':
-            echo addNewProduct($_POST['name'], $_POST['brand'], $_POST['category'], $_POST['price'], $_POST['discount'], $_POST['description']);
+
+            $brand = $_POST['brand'];
+            $name = $_POST['name'];
+            $category = $_POST['category'];
+            $price = $_POST['price'];
+            $discount = $_POST['discount'];
+            $description = $_POST['description'];
+            echo addNewProduct($name, $brand, $category, $price, $discount, $description);
             break;
         case 'updateProduct':
-            echo updateProduct($_POST['product_id'], $_POST['name'], $_POST['brand'], $_POST['category'], $_POST['price'], $_POST['discount']);
+            $id = $_POST['product_id'];
+            $brand = $_POST['brand'];
+            $name = $_POST['name'];
+            $category = $_POST['category'];
+            $price = $_POST['price'];
+            $discount = $_POST['discount'];
+            echo updateProduct($id, $name, $brand, $category, $price, $discount);
             break;
         case 'deleteProduct':
             echo deleteProduct($_POST['product_id']);

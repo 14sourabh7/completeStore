@@ -1,5 +1,7 @@
 <?php
 
+namespace App;
+
 class Orders extends DB
 {
     private $orders;
@@ -12,7 +14,6 @@ class Orders extends DB
 
     /**
      * placeOrder($user_id, $quant, $total, $address, $pin, $cart, $status)
-     * 
      * function to place order
      *
      * @param [type] $user_id
@@ -27,7 +28,9 @@ class Orders extends DB
     public function placeOrder($user_id, $quant, $total, $address, $pin, $cart, $status)
     {
         $conn = DB::getInstance();
-        $stmt = $conn->prepare("INSERT INTO `orders` (`user_id`, `quantity`, `amount`, `address`, `pin`, `cart`,`status`)  VALUES('$user_id','$quant','$total','$address','$pin','$cart','$status')");
+        $stmt = $conn->prepare("INSERT INTO `orders` 
+        (`user_id`, `quantity`, `amount`, `address`, `pin`, `cart`,`status`) 
+         VALUES('$user_id','$quant','$total','$address','$pin','$cart','$status')");
         $stmt->execute();
         $last_id = $conn->lastInsertId();
         return json_encode($last_id);
@@ -35,7 +38,6 @@ class Orders extends DB
 
     /**
      * getOrders($user_id)
-     * 
      * function to orders based on user
      *
      * @param [type] $user_id
@@ -51,7 +53,6 @@ class Orders extends DB
 
     /**
      * getAllOrders()
-     * 
      * function to fetch all orders from db
      *
      * @param [type] $user_id
