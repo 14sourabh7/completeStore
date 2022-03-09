@@ -114,8 +114,8 @@ $(document).ready(function () {
       dataType: "JSON",
     }).done((data) => {
       users = data;
-      makePages(Math.ceil(data.length / 5), "paginationUser");
-      paginationUser(data);
+      makePages(Math.ceil(data.length / 5), "paginationUser", "User");
+      paginationUser(data, 1);
     });
   }
 
@@ -163,21 +163,6 @@ $(document).ready(function () {
     $(".userData").html(html);
   }
 
-  $("#searchUsers").on("keyup", function () {
-    console.log($(this).val());
-    var user, email;
-    user = users.filter((x) =>
-      x.user_id.toLowerCase().includes($(this).val().toLowerCase())
-    );
-    email = users.filter((x) =>
-      x.email.toLowerCase().includes($(this).val().toLowerCase())
-    );
-    if (user.length > 0) {
-      paginationUser(user);
-    } else if (email.length > 0) {
-      paginationUser(email);
-    }
-  });
   //////////////// Product table /////////////////////////////////////////////////
 
   // event handler to add new product
@@ -303,7 +288,8 @@ $(document).ready(function () {
       dataType: "JSON",
     }).done((data) => {
       products = data;
-      paginationProduct(data);
+      makePages(Math.ceil(data.length / 5), "paginationProducts", "Product");
+      paginationProduct(data, 1);
     });
   }
 
@@ -344,21 +330,6 @@ $(document).ready(function () {
     }
     $(".productData").html(html);
   }
-  $("#searchProducts").on("keyup", function () {
-    console.log($(this).val());
-    var product, name;
-    product = products.filter((x) =>
-      x.sku_no.toLowerCase().includes($(this).val().toLowerCase())
-    );
-    name = products.filter((x) =>
-      x.name.toLowerCase().includes($(this).val().toLowerCase())
-    );
-    if (product.length > 0) {
-      paginationProduct(product);
-    } else if (name.length > 0) {
-      paginationProduct(name);
-    }
-  });
 
   //////////////// Order Management  ///////////////////////////////////////////////////////////
 
@@ -377,68 +348,7 @@ $(document).ready(function () {
       getOrders();
     });
   });
-  function paginationUser(array, pageNumber = 1, pageSize = 5) {
-    var arrayT = array.slice(
-      (pageNumber - 1) * pageSize,
-      pageNumber * pageSize
-    );
-    displayUsers(arrayT);
-  }
-  function makePages(pages, list) {
-    let i = 1;
-    html =
-      ' <li class="page-item"><button class="btn nav-link prev pageUser" href="#" data-page="1">Start</button></li>';
 
-    for (i; i <= pages; i++) {
-      html += `
-        <li class="page-item"><button class="btn nav-link pageUser" data-page="${i}" href="#">${i}</button></li>
-        `;
-    }
-
-    html += `<li class="page-item"><button class="btn nav-link next pageUser" data-page="${
-      i - 1
-    }" data-endpage="${i - 1}" href="#">End</button></li>`;
-    $(`.${list}`).html(html);
-  }
-
-  $("body").on("click", ".pageUser", function () {
-    var currentPage = $(this).data("page");
-    if (currentPage == "1") {
-      $(".prev").attr("disabled", true);
-    } else {
-      console.log("here");
-      $(".prev").attr("disabled", false);
-    }
-    if (currentPage == $(".next").data("endPage")) {
-      $(".next").attr("disabled", true);
-    } else {
-      $(".next").attr("disabled", false);
-    }
-
-    paginationUser(users, currentPage);
-  });
-  function paginationProduct(array) {
-    $(".productPages").pagination({
-      dataSource: array,
-      pageSize: 5,
-      showGoInput: true,
-      showGoButton: true,
-      callback: function (data, pagination) {
-        displayProducts(data);
-      },
-    });
-  }
-  function paginationOrder(array) {
-    $(".orderPages").pagination({
-      dataSource: array,
-      pageSize: 5,
-      showGoInput: true,
-      showGoButton: true,
-      callback: function (data, pagination) {
-        displayOrders(data);
-      },
-    });
-  }
   $("body").on("click", ".viewItem", function () {
     console.log($(this).parent().parent().siblings().children(".items"));
     $(this).siblings(".items").toggle();
@@ -453,7 +363,8 @@ $(document).ready(function () {
       dataType: "JSON",
     }).done((data) => {
       orders = data;
-      paginationOrder(data);
+      makePages(Math.ceil(data.length / 5), "paginationOrders", "Order");
+      paginationOrder(data, 1);
     });
   }
 
@@ -587,6 +498,44 @@ $(document).ready(function () {
       $("#profileError").html("*Please provide all details");
     }
   });
+
+  // search functions ////////////////////////////////////////////////////////////////
+
+  // function to search users
+  $("#searchUsers").on("keyup", function () {
+    console.log($(this).val());
+    var user, email;
+    user = users.filter((x) =>
+      x.user_id.toLowerCase().includes($(this).val().toLowerCase())
+    );
+    email = users.filter((x) =>
+      x.email.toLowerCase().includes($(this).val().toLowerCase())
+    );
+    if (user.length > 0) {
+      paginationUser(user, 1);
+    } else if (email.length > 0) {
+      paginationUser(email, 1);
+    }
+  });
+
+  // function to search products
+  $("#searchProducts").on("keyup", function () {
+    console.log($(this).val());
+    var product, name;
+    product = products.filter((x) =>
+      x.sku_no.toLowerCase().includes($(this).val().toLowerCase())
+    );
+    name = products.filter((x) =>
+      x.name.toLowerCase().includes($(this).val().toLowerCase())
+    );
+    if (product.length > 0) {
+      paginationProduct(product, 1);
+    } else if (name.length > 0) {
+      paginationProduct(name, 1);
+    }
+  });
+
+  // function to search orders
   $("#searchOrders").on("keyup", function () {
     console.log($(this).val());
     var product, name;
@@ -597,10 +546,99 @@ $(document).ready(function () {
       x.user_id.toLowerCase().includes($(this).val().toLowerCase())
     );
     if (order.length > 0) {
-      paginationOrder(order);
+      paginationOrder(order, 1);
     } else if (user.length > 0) {
-      paginationOrder(user);
+      paginationOrder(user, 1);
     }
   });
+
+  // pagination funcitons///////////////////////////////////////////////////////////////
+  function paginationProduct(array, pageNumber, pageSize = 5) {
+    var arrayT = array.slice(
+      (pageNumber - 1) * pageSize,
+      pageNumber * pageSize
+    );
+    displayProducts(arrayT);
+  }
+  function paginationOrder(array, pageNumber, pageSize = 5) {
+    var arrayT = array.slice(
+      (pageNumber - 1) * pageSize,
+      pageNumber * pageSize
+    );
+    displayOrders(arrayT);
+  }
+  function paginationUser(array, pageNumber = 1, pageSize = 5) {
+    var arrayT = array.slice(
+      (pageNumber - 1) * pageSize,
+      pageNumber * pageSize
+    );
+    displayUsers(arrayT);
+  }
+
+  function makePages(pages, list, filter) {
+    let i = 1;
+    html = `<li class="page-item"><button class="btn nav-link prev page${filter}" href="#" data-page="1">Start</button></li>`;
+
+    for (i; i <= pages; i++) {
+      html += `
+        <li class="page-item"><button class="btn nav-link page${filter}" data-page="${i}" href="#">${i}</button></li>
+        `;
+    }
+
+    html += `<li class="page-item"><button class="btn nav-link next page${filter}" data-page="${
+      i - 1
+    }" data-endpage="${i - 1}" href="#">End</button></li>`;
+    $(`.${list}`).html(html);
+  }
+
+  $("body").on("click", ".pageUser", function () {
+    var currentPage = $(this).data("page");
+    if (currentPage == "1") {
+      $(".prev").attr("disabled", true);
+    } else {
+      console.log("here");
+      $(".prev").attr("disabled", false);
+    }
+    if (currentPage == $(".next").data("endPage")) {
+      $(".next").attr("disabled", true);
+    } else {
+      $(".next").attr("disabled", false);
+    }
+
+    paginationUser(users, currentPage);
+  });
+  $("body").on("click", ".pageProduct", function () {
+    var currentPage = $(this).data("page");
+    if (currentPage == "1") {
+      $(".prev").attr("disabled", true);
+    } else {
+      console.log("here");
+      $(".prev").attr("disabled", false);
+    }
+    if (currentPage == $(".next").data("endPage")) {
+      $(".next").attr("disabled", true);
+    } else {
+      $(".next").attr("disabled", false);
+    }
+
+    paginationProduct(products, currentPage);
+  });
+  $("body").on("click", ".pageOrder", function () {
+    var currentPage = $(this).data("page");
+    if (currentPage == "1") {
+      $(".prev").attr("disabled", true);
+    } else {
+      console.log("here");
+      $(".prev").attr("disabled", false);
+    }
+    if (currentPage == $(".next").data("endPage")) {
+      $(".next").attr("disabled", true);
+    } else {
+      $(".next").attr("disabled", false);
+    }
+
+    paginationOrder(orders, currentPage);
+  });
+
   //
 });
