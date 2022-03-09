@@ -114,6 +114,7 @@ $(document).ready(function () {
       dataType: "JSON",
     }).done((data) => {
       users = data;
+      makePages(Math.ceil(data.length / 5), "paginationUser");
       paginationUser(data);
     });
   }
@@ -376,17 +377,46 @@ $(document).ready(function () {
       getOrders();
     });
   });
-  function paginationUser(array) {
-    $(".userPages").pagination({
-      dataSource: array,
-      pageSize: 5,
-      showGoInput: true,
-      showGoButton: true,
-      callback: function (data, pagination) {
-        displayUsers(data);
-      },
-    });
+  function paginationUser(array, pageNumber = 1, pageSize = 5) {
+    var arrayT = array.slice(
+      (pageNumber - 1) * pageSize,
+      pageNumber * pageSize
+    );
+    displayUsers(arrayT);
   }
+  function makePages(pages, list) {
+    let i = 1;
+    html =
+      ' <li class="page-item"><button class="btn nav-link prev pageUser" href="#" data-page="1">Start</button></li>';
+
+    for (i; i <= pages; i++) {
+      html += `
+        <li class="page-item"><button class="btn nav-link pageUser" data-page="${i}" href="#">${i}</button></li>
+        `;
+    }
+
+    html += `<li class="page-item"><button class="btn nav-link next pageUser" data-page="${
+      i - 1
+    }" data-endpage="${i - 1}" href="#">End</button></li>`;
+    $(`.${list}`).html(html);
+  }
+
+  $("body").on("click", ".pageUser", function () {
+    var currentPage = $(this).data("page");
+    if (currentPage == "1") {
+      $(".prev").attr("disabled", true);
+    } else {
+      console.log("here");
+      $(".prev").attr("disabled", false);
+    }
+    if (currentPage == $(".next").data("endPage")) {
+      $(".next").attr("disabled", true);
+    } else {
+      $(".next").attr("disabled", false);
+    }
+
+    paginationUser(users, currentPage);
+  });
   function paginationProduct(array) {
     $(".productPages").pagination({
       dataSource: array,
