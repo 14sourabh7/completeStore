@@ -577,7 +577,7 @@ $(document).ready(function () {
 
   function makePages(pages, list, filter) {
     let i = 1;
-    html = `<li class="page-item"><button class="btn nav-link prev page${filter}" href="#" data-page="1">Start</button></li>`;
+    html = `<li class="page-item"><button class="btn nav-link prev${filter} page${filter}" href="#" data-page="1">Start</button></li>`;
 
     for (i; i <= pages; i++) {
       html += `
@@ -585,24 +585,24 @@ $(document).ready(function () {
         `;
     }
 
-    html += `<li class="page-item"><button class="btn nav-link next page${filter}" data-page="${
+    html += `<li class="page-item"><button class="btn nav-link next${filter} page${filter}" data-page="${
       i - 1
-    }" data-endpage="${i - 1}" href="#">End</button></li>`;
+    }" data-endpage="${i}" href="#">End</button></li>`;
     $(`.${list}`).html(html);
   }
 
   $("body").on("click", ".pageUser", function () {
     var currentPage = $(this).data("page");
     if (currentPage == "1") {
-      $(".prev").attr("disabled", true);
+      $(".prevUser").attr("disabled", true);
     } else {
       console.log("here");
-      $(".prev").attr("disabled", false);
+      $(".prevUser").attr("disabled", false);
     }
-    if (currentPage == $(".next").data("endPage")) {
-      $(".next").attr("disabled", true);
+    if (currentPage == $(".nextUser").data("endpage") - 1) {
+      $(".nextUser").attr("disabled", true);
     } else {
-      $(".next").attr("disabled", false);
+      $(".nextUser").attr("disabled", false);
     }
 
     paginationUser(users, currentPage);
@@ -610,15 +610,15 @@ $(document).ready(function () {
   $("body").on("click", ".pageProduct", function () {
     var currentPage = $(this).data("page");
     if (currentPage == "1") {
-      $(".prev").attr("disabled", true);
+      $(".prevProduct").attr("disabled", true);
     } else {
       console.log("here");
-      $(".prev").attr("disabled", false);
+      $(".prevProduct").attr("disabled", false);
     }
-    if (currentPage == $(".next").data("endPage")) {
-      $(".next").attr("disabled", true);
+    if (currentPage == $(".nextProduct").data("endpage") - 1) {
+      $(".nextProduct").attr("disabled", true);
     } else {
-      $(".next").attr("disabled", false);
+      $(".nextProduct").attr("disabled", false);
     }
 
     paginationProduct(products, currentPage);
@@ -626,15 +626,15 @@ $(document).ready(function () {
   $("body").on("click", ".pageOrder", function () {
     var currentPage = $(this).data("page");
     if (currentPage == "1") {
-      $(".prev").attr("disabled", true);
+      $(".prevOrder").attr("disabled", true);
     } else {
       console.log("here");
-      $(".prev").attr("disabled", false);
+      $(".prevOrder").attr("disabled", false);
     }
-    if (currentPage == $(".next").data("endPage")) {
-      $(".next").attr("disabled", true);
+    if (currentPage == $(".nextOrder").data("endpage") - 1) {
+      $(".nextOrder").attr("disabled", true);
     } else {
-      $(".next").attr("disabled", false);
+      $(".nextOrder").attr("disabled", false);
     }
 
     paginationOrder(orders, currentPage);
