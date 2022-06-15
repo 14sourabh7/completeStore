@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "url": "https://github.com/14sourabh7/completeStore.git",
+      "type": "git"
+    }
+  ],
+  "require": {
+    "14sourabh7/completeStore": "^1.0.0"
+  }
+}
